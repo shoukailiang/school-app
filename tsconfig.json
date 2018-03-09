@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowJs": true
+  }
+}
+// 修改eslint装饰器警告

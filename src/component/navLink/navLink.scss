@@ -1,0 +1,12 @@
+.navlink-span {
+    padding-right: 12px;
+    font-size: 22px;
+    cursor: pointer;
+    a{
+      padding-left: 20px;
+      color: #ccc;
+    }
+}
+.navlink-span:first-child{
+  margin-left: 100px;
+}
