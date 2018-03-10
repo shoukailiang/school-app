@@ -2,10 +2,10 @@ import React from 'react';
 import { Form, Icon, Input, Button, Radio,Alert } from 'antd';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import Logo from '../../component/logo/logo'
-import BackgroundCarousel from '../../component/carousel/LRcarousel'
+import Logo from '@/component/logo/logo'
+import BackgroundCarousel from '@/component/carousel/LRcarousel'
 import '../login-register.scss'
-import { register } from '../../redux/user.redux'
+import { register } from '@/redux/user.redux'
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 @connect(

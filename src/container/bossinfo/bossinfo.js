@@ -3,9 +3,9 @@ import { Input, Button } from 'antd'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { update } from '../../redux/user.redux'
-import InfoNav from '../../component/infoNav/infoNav'
-import AvatarSelector from '../../component/avatarSelector/avatarSelector'
+import { update } from '@/redux/user.redux'
+import InfoNav from '@/component/infoNav/infoNav'
+import AvatarSelector from '@/component/avatarSelector/avatarSelector'
 import '../bossinfo-geniusinfo.scss'
 const { TextArea } = Input;
 @connect(

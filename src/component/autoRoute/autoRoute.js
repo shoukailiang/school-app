@@ -3,7 +3,7 @@ import axios from 'axios'
 /* 引入后就能变成路由组件 */
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loadData } from '../../redux/user.redux'
+import { loadData } from '@/redux/user.redux'
 @withRouter
 @connect(
   null,

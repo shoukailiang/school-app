@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Card, Button, Modal } from 'antd';
 import { Redirect } from 'react-router-dom'
 import BrowserCookie from 'browser-cookies'
-import { logoutSubmit } from '../../redux/user.redux'
+import { logoutSubmit } from '@/redux/user.redux'
 import './user.scss'
 @connect(
   state => state.user,
