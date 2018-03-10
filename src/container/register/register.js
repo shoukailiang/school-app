@@ -1,37 +1,29 @@
 import React from 'react';
-import { Form, Icon, Input, Button, Radio,Alert } from 'antd';
+import { Form, Icon, Input, Button, Radio, Alert } from 'antd';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Logo from '@/component/logo/logo'
 import BackgroundCarousel from '@/component/carousel/LRcarousel'
 import '../login-register.scss'
 import { register } from '@/redux/user.redux'
+import LoginRegisterHoc from '@/component/login-register-hoc/login-register-hoc'
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 @connect(
   state => state.user,
   { register }
 )
+@LoginRegisterHoc
 class Register extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: '',
-      pwd: '',
-      repwd: '',
-      type: 'boss'
-    }
+  // 设置type的默认项
+  componentDidMount() {
+    
   }
   backLogin() {
     this.props.history.push('/login')
   }
-  handleChange(key, event) {
-    this.setState({
-      [key]: event.target.value
-    })
-  }
   handleRegister() {
-    this.props.register(this.state)
+    this.props.register(this.props.state)
   }
   render() {
     return (
@@ -46,8 +38,8 @@ class Register extends React.Component {
             <FormItem>
               <Input prefix={<Icon type="user" />}
                 placeholder="用户名" size="large"
-                value={this.state.user}
-                onChange={this.handleChange.bind(this, 'user')}
+                value={this.props.state.user}
+                onChange={this.props.handleChange.bind(this, 'user')}
               />
             </FormItem>
             <FormItem>
@@ -55,8 +47,8 @@ class Register extends React.Component {
                 type="password"
                 placeholder="密码"
                 size="large"
-                value={this.state.pwd}
-                onChange={this.handleChange.bind(this, 'pwd')}
+                value={this.props.state.pwd}
+                onChange={this.props.handleChange.bind(this, 'pwd')}
               />
             </FormItem>
             <FormItem>
@@ -64,18 +56,18 @@ class Register extends React.Component {
                 type="password"
                 placeholder="确认密码"
                 size="large"
-                value={this.state.repwd}
-                onChange={this.handleChange.bind(this, 'repwd')}
+                value={this.props.state.repwd}
+                onChange={this.props.handleChange.bind(this, 'repwd')}
               />
             </FormItem>
-            <RadioGroup onChange={this.handleChange.bind(this, 'type')} style={{ marginBottom: '10px' }}>
+            <RadioGroup onChange={this.props.handleChange.bind(this, 'type')} style={{ marginBottom: '10px' }}>
               <Radio value='boss'
-                checked={this.state.type === 'boss'}
+                checked={this.props.state.type === 'boss'}
               >Boss
               </Radio>
               <Radio
                 value='genius'
-                checked={this.state.type === 'genius'}
+                checked={this.props.state.type === 'genius'}
               >牛人</Radio>
             </RadioGroup>
             <Button type="primary" className="login-register-form-button" size="large" onClick={this.handleRegister.bind(this)}>

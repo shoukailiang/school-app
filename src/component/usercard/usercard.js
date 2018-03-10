@@ -12,7 +12,7 @@ class Usercard extends React.Component {
                 <img src={require(`../avatarSelector/images/${v.avatar}.png`)} alt="" />
                 {v.company ? <div>公司: {v.company}</div> : null}
                 {/* 若有换行符，进行一行一行显示 */}
-                <b>要求：</b>
+                <b>{v.type === 'boss' ? '要求：' : '个人介绍'}</b>
                 {v.desc.split('\n').map((v, index) => {
                   return <p key={v + index}>{v}</p>
                 })}

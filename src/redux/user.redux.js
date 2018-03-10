@@ -61,6 +61,9 @@ export function register({ user, pwd, repwd, type }) {
   if (pwd.length < 7) {
     return errorMsg("密码最少需要7位")
   }
+  if(!type){
+    return errorMsg("请选择注册类型")
+  }
   // 异步的写法
   return dispatch => {
     axios.post('/user/register', { user, pwd, type })

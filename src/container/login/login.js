@@ -5,30 +5,22 @@ import { Redirect } from 'react-router-dom'
 import Logo from '@/component/logo/logo'
 import { login } from '@/redux/user.redux'
 import BackgroundCarousel from '@/component/carousel/LRcarousel'
+import LoginRegisterHoc from '@/component/login-register-hoc/login-register-hoc'
 import '../login-register.scss'
 const FormItem = Form.Item;
 @connect(
   state => state.user,
   { login }
 )
+@LoginRegisterHoc
 class Login extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: '',
-      pwd: '',
-    }
-  }
   returnRegister() {
     this.props.history.push('/register')
   }
-  handleChange(key, event) {
-    this.setState({
-      [key]: event.target.value
-    })
-  }
+
   handleLogin() {
-    this.props.login(this.state)
+    //来自高阶组件的state
+    this.props.login(this.props.state)
   }
   render() {
     return (
@@ -42,15 +34,16 @@ class Login extends React.Component {
           <Form className="login-form">
             <FormItem>
               <Input prefix={<Icon type="user" />}
-                value={this.state.user}
+                value={this.props.state.user}
                 placeholder="用户名"
                 size="large"
-                onChange={this.handleChange.bind(this, 'user')}
+                onChange={this.props.handleChange.bind(this, 'user')}  // 来自高阶组件的函数
               />
             </FormItem>
             <FormItem>
               <Input prefix={<Icon type="lock" />} type="password" placeholder="密码" size="large"
-                onChange={this.handleChange.bind(this, 'pwd')}
+                value={this.props.state.pwd}
+                onChange={this.props.handleChange.bind(this, 'pwd')}
               />
             </FormItem>
             <Button type="primary" htmlType="submit" className="login-register-form-button" size="large"
