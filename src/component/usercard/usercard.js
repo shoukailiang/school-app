@@ -1,9 +1,15 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card, Icon } from 'antd';
+import { withRouter } from 'react-router-dom'
+import './usercard.scss'
+@withRouter
 class Usercard extends React.Component {
+  handleClick(v) {
+    this.props.history.push(`/chat/${v._id}`)
+  }
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.props.userlist2.map(v => {
           return (
             // 判断必须要有头像否侧不渲染
@@ -17,11 +23,15 @@ class Usercard extends React.Component {
                   return <p key={v + index}>{v}</p>
                 })}
                 {v.money ? <div>薪资: {v.money}</div> : null}
+                <p className="user-char-chat-with-p" onClick={this.handleClick.bind(this, v)}>
+                  <Icon type="message" />
+                  联系他（她）
+                </p>
               </Card>
               : null
           )
         })}
-      </div>
+      </React.Fragment>
     )
   }
 }

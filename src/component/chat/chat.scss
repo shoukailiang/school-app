@@ -1,0 +1,36 @@
+.chat-container {
+    width: 800px;
+    height: 560px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    .chat-contnet {
+        height: 420px;
+        overflow: auto;
+        border-bottom: 2px solid black;
+    }
+    .chat-message {
+        height: 140px;
+        overflow: auto;
+    }
+    .chat-textarea {
+        width: 100%;
+        outline: none;
+        border: none;
+        height: 135px;
+        padding: 16px;
+        padding-bottom: 40px;
+        resize: none;
+    }
+    .chat-button {
+        position: absolute;
+        bottom: 4px;
+        right: 20px;
+    }
+}
+
+textarea {
+    outline: none
+}
