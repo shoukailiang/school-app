@@ -1,5 +1,5 @@
 # boss-recruitment
-> webpack+react全家桶+ant-design+express+mongodb 全栈开发招聘页面
+> webpack+react全家桶+ant-design+express+mongodb+socket.io 全栈开发招聘页面
 
 # 技术栈
 - **React16**
@@ -12,6 +12,8 @@
 - **mongodb** 存储数据
 - **scss** 预编译器
 - **styled-component** 让样式也能变成组件
+- **socket.io** 
+- **socket.io-client**  
 
 # 启动项目
 ```
@@ -36,3 +38,4 @@ cd server && npm start
 ## 正在做的
 - 牛人和boss的通讯聊天
 - 完善页面的美观程度
+
