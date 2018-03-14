@@ -12,8 +12,8 @@
 - **mongodb** 存储数据
 - **scss** 预编译器
 - **styled-component** 让样式也能变成组件
-- **socket.io** 
-- **socket.io-client**  
+- **socket.io**  通信
+- **socket.io-client**  socket.io的客户端
 
 # 启动项目
 ```
@@ -38,4 +38,10 @@ cd server && npm start
 ## 正在做的
 - 牛人和boss的通讯聊天
 - 完善页面的美观程度
+## 存在的问题
+- 接受信息会有延迟，我也不知道为什么，`socket.io`上也有类似的`issus`
+
+## 注意
+- 若前端页面npm start报错，下一个redux的chrome插件就好了 `Redux DevTools
+`
 
