@@ -1,9 +1,12 @@
 import React from 'react'
 import { Button } from 'antd'
-import io from 'socket.io-client'
-// 由于跨域了所以要写上
+import { connect } from 'react-redux'
+import { sendMsg, getMessageList, recvMsg } from '../../redux/chat.redux'
 import './chat.scss'
-const socket = io("ws://localhost:9999")
+@connect(
+  state => state,
+  { sendMsg, getMessageList, recvMsg }
+)
 class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -13,12 +16,15 @@ class Chat extends React.Component {
     }
   }
   componentDidMount() {
+    /* //监听后端广播到全局 的信息
     socket.on('recvmsg', (data) => {
       console.log(data)
       this.setState({
         msg: [...this.state.msg, data.text]
       })
-    })
+    }) */
+    this.props.getMessageList()
+    this.props.recvMsg()
   }
   handleChange(key, e) {
     this.setState({
@@ -26,7 +32,13 @@ class Chat extends React.Component {
     })
   }
   handleSend() {
-    socket.emit('sendmsg', { text: this.state.text })
+    /* socket.emit('sendmsg', { text: this.state.text }) */
+    // 从谁发出去
+    const from = this.props.user._id;
+    // 谁接收
+    const to = this.props.match.params.user;
+    const msg = this.state.text;
+    this.props.sendMsg({ from, to, msg })
     this.setState({
       text: ''
     })

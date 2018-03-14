@@ -4,6 +4,7 @@ const Router = express.Router();
 const model = require('./model.js');
 // 获取User模型
 const User = model.getModel('user');
+const Chat = model.getModel('chat');
 // 注册
 Router.post('/register', (req, res) => {
   const { user, pwd, type } = req.body
@@ -78,6 +79,15 @@ Router.get('/list', (req, res) => {
   const { type } = req.query;
   User.find({ type }, (err, doc) => {
     return res.json({ code: 0, doc })
+  })
+})
+
+// 获取聊天信息列表
+Router.get('/getmsglist', function (req, res) {
+  Chat.find({}, function (err, doc) {
+    if (!err) {
+      return res.json({ code: 0, msgs: doc })
+    }
   })
 })
 

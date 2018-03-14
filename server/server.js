@@ -3,6 +3,8 @@ const bodyParse = require('body-parser');
 const cookieParse = require('cookie-parser')
 const userRoute = require('./user');
 const app = express();
+const model = require('./model.js');
+const Chat = model.getModel('chat');
 // work with express socket.io和express绑定在一起
 const server = require('http').Server(app);
 const io = require('socket.io')(server)
@@ -17,7 +19,13 @@ io.on('connection', (socket) => {
   socket.on('sendmsg', (data) => {
     // console.log(data)
     // 把data广播到全局
-    io.emit('recvmsg', data)
+    // io.emit('recvmsg', data)
+    const { from, to, msg } = data;
+    const chatid = [from, to].sort().join('-');
+    Chat.create({ from, to, chatid, content: msg }, function (err, doc) {
+      // console.log(doc)
+      io.emit('recvmsg', Object.assign({}, doc._doc))
+    })
   })
 })
 
