@@ -25,6 +25,8 @@ class Chat extends React.Component {
     }) */
     this.props.getMessageList()
     this.props.recvMsg()
+    console.log(this.refs.content)
+    this.refs.content.scrollTop = '300px'
   }
   handleChange(key, e) {
     this.setState({
@@ -44,9 +46,14 @@ class Chat extends React.Component {
     })
   }
   render() {
+    // console.log(this.props)
     return (
       <div className="chat-container">
-        <div className="chat-contnet"></div>
+        <div className="chat-content" ref="content">
+          {this.props.chat.chatimg.map(v => {
+            return <p key={v._id}>{v.content}</p>
+          })}
+        </div>
         <div className="chat-message">
           <textarea className="chat-textarea" onChange={this.handleChange.bind(this, 'text')} value={this.state.text}></textarea>
           <Button type="primary" className="chat-button" onClick={this.handleSend.bind(this)}>发送</Button>
