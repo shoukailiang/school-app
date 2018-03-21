@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './navLink.scss'
 @withRouter
+@connect(
+  state => state.chat
+)
 class NavLink extends React.Component {
   static propsTypes = {
     data: PropTypes.array.isRequired
@@ -19,6 +23,7 @@ class NavLink extends React.Component {
               this.props.history.push(v.path)
             }}>
               <img src={v.path === pathname ? require(`./images/${v.icon}-active.png`) : require(`./images/${v.icon}.png`)} alt="" />
+              {v.path === '/msg' ? <div className="circle-message"><p>{this.props.unread}</p></div> : null}
               <a style={v.path === pathname ? { color: 'blue' } : {}}>{v.title}</a>
             </span>
           )

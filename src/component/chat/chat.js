@@ -47,11 +47,14 @@ class Chat extends React.Component {
   }
   render() {
     // console.log(this.props)
+    const user = this.props.match.params.user;
     return (
       <div className="chat-container">
         <div className="chat-content" ref="content">
           {this.props.chat.chatimg.map(v => {
-            return <p key={v._id}>{v.content}</p>
+            return v.from === user
+              ? <p key={v._id} className="chat-other">对方发送的：{v.content}</p>
+              : <p key={v._id} className="chat-me">我发送的：{v.content}</p>
           })}
         </div>
         <div className="chat-message">

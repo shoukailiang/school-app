@@ -19,7 +19,7 @@
         width: 100%;
         outline: none;
         border: none;
-        height: 135px;
+        height: 135px;  
         padding: 16px;
         padding-bottom: 40px;
         resize: none;
@@ -28,6 +28,13 @@
         position: absolute;
         bottom: 4px;
         right: 20px;
+    }
+    .chat-me{
+        font-size: 18px;
+        text-align: right;
+    }
+    .chat-other{
+        font-size: 18px;
     }
 }
 
