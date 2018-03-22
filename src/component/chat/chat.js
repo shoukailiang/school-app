@@ -23,10 +23,10 @@ class Chat extends React.Component {
         msg: [...this.state.msg, data.text]
       })
     }) */
-    this.props.getMessageList()
-    this.props.recvMsg()
-    console.log(this.refs.content)
-    this.refs.content.scrollTop = '300px'
+    if (!this.props.chat.chatimg.length) {
+      this.props.getMessageList()
+      this.props.recvMsg()
+    }
   }
   handleChange(key, e) {
     this.setState({
@@ -47,14 +47,26 @@ class Chat extends React.Component {
   }
   render() {
     // console.log(this.props)
-    const user = this.props.match.params.user;
+    const userid = this.props.match.params.user;
+    const user = this.props.chat.users;
+    if (!user[userid]) {
+      return null;
+    }
     return (
       <div className="chat-container">
+        <p className="chat-container-username">{user[userid].name}</p>
         <div className="chat-content" ref="content">
           {this.props.chat.chatimg.map(v => {
-            return v.from === user
-              ? <p key={v._id} className="chat-other">对方发送的：{v.content}</p>
-              : <p key={v._id} className="chat-me">我发送的：{v.content}</p>
+            const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`);
+            return v.from === userid
+              ? <p key={v._id} className="chat-other">
+                <img src={avatar} alt="" />              
+                {v.content}
+              </p>
+              : <p key={v._id} className="chat-me">
+                {v.content}
+                <img src={avatar} alt="" />
+              </p>
           })}
         </div>
         <div className="chat-message">

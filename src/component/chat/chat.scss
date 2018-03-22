@@ -1,11 +1,20 @@
 .chat-container {
     width: 800px;
     height: 560px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    margin: 100px auto;
     border: 1px solid #ccc;
+    .chat-container-username{
+        position: absolute;
+        width: 100%;
+        height:30px;
+        text-align: center;
+        font-size: 16px;
+        background-color: rgb(168, 135, 135);
+        margin-bottom: 0;
+        top: -30px;
+        font-weight: bold;
+    }
     .chat-content {
         height: 420px;
         overflow: auto;
