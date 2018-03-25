@@ -1,8 +1,10 @@
 import React from 'react'
 import { Button } from 'antd'
 import { connect } from 'react-redux'
-import { sendMsg, getMessageList, recvMsg } from '../../redux/chat.redux'
+import { sendMsg, getMessageList, recvMsg } from '@/redux/chat.redux'
+import { getChatId } from '@/util';
 import './chat.scss'
+
 @connect(
   state => state,
   { sendMsg, getMessageList, recvMsg }
@@ -23,7 +25,7 @@ class Chat extends React.Component {
         msg: [...this.state.msg, data.text]
       })
     }) */
-    if (!this.props.chat.chatimg.length) {
+    if (!this.props.chat.chatmsg.length) {
       this.props.getMessageList()
       this.props.recvMsg()
     }
@@ -49,6 +51,8 @@ class Chat extends React.Component {
     // console.log(this.props)
     const userid = this.props.match.params.user;
     const user = this.props.chat.users;
+    const chatid = getChatId(userid, this.props.user._id)// 别人的和自己的id
+    const chatmsg = this.props.chat.chatmsg.filter(v => v.chatid === chatid);
     if (!user[userid]) {
       return null;
     }
@@ -56,11 +60,11 @@ class Chat extends React.Component {
       <div className="chat-container">
         <p className="chat-container-username">{user[userid].name}</p>
         <div className="chat-content" ref="content">
-          {this.props.chat.chatimg.map(v => {
+          {chatmsg.map(v => {
             const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`);
             return v.from === userid
               ? <p key={v._id} className="chat-other">
-                <img src={avatar} alt="" />              
+                <img src={avatar} alt="" />
                 {v.content}
               </p>
               : <p key={v._id} className="chat-me">

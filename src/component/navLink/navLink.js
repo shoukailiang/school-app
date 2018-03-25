@@ -14,7 +14,7 @@ class NavLink extends React.Component {
   render() {
     // 先进行过滤，filter里面为true的会留下来,不会改变元数据
     const data = this.props.data.filter(v => !v.hide)
-    const { pathname } = this.props.location
+    const { pathname } = this.props.location;
     return (
       <React.Fragment>
         {data.map(v => {
@@ -23,7 +23,7 @@ class NavLink extends React.Component {
               this.props.history.push(v.path)
             }}>
               <img src={v.path === pathname ? require(`./images/${v.icon}-active.png`) : require(`./images/${v.icon}.png`)} alt="" />
-              {v.path === '/msg' ? <div className="circle-message"><p>{this.props.unread}</p></div> : null}
+              {v.path === '/msg' && this.props.unread !== 0 ? <div className="circle-message"><p>{this.props.unread}</p></div> : null}
               <a style={v.path === pathname ? { color: 'blue' } : {}}>{v.title}</a>
             </span>
           )

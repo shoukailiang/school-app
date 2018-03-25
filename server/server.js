@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
     // 把data广播到全局
     // io.emit('recvmsg', data)
     const { from, to, msg } = data;
-    const chatid = [from, to].sort().join('-');
+    const chatid = [from, to].sort().join('_');
     Chat.create({ from, to, chatid, content: msg }, function (err, doc) {
       // console.log(doc)
       io.emit('recvmsg', Object.assign({}, doc._doc))

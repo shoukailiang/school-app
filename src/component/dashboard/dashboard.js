@@ -12,14 +12,16 @@ function Msg() {
   return <h2>Msg</h2>
 }
 @connect(
-  state => state.user,
+  state => state,
   { getMessageList, recvMsg }
 )
 class Dashboard extends React.Component {
   componentDidMount() {
     // 是在dashboard页面获取信息
-    this.props.getMessageList()
-    this.props.recvMsg()
+    if (!this.props.chat.chatmsg.length) {
+      this.props.getMessageList()
+      this.props.recvMsg()
+    }
   }
   render() {
     const navList = [
@@ -29,7 +31,7 @@ class Dashboard extends React.Component {
         icon: 'boss',
         title: '牛人列表',
         component: Boss,
-        hide: this.props.type === 'genius'
+        hide: this.props.user.type === 'genius'
       },
       {
         path: '/genius',
@@ -37,7 +39,7 @@ class Dashboard extends React.Component {
         icon: 'job',
         title: 'BOSS列表',
         component: Genius,
-        hide: this.props.type === 'boss'
+        hide: this.props.user.type === 'boss'
       },
       {
         path: '/msg',
