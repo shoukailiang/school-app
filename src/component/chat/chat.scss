@@ -2,7 +2,8 @@
     width: 800px;
     height: 560px;
     position: relative;
-    margin: 100px auto;
+    margin: 0px auto;
+    transform: translateY(200px);
     border: 1px solid #ccc;
     .chat-container-username{
         position: absolute;
@@ -21,8 +22,9 @@
         border-bottom: 2px solid black;
     }
     .chat-message {
+        position: relative;
         height: 140px;
-        overflow: auto;
+        // overflow: auto;
     }
     .chat-textarea {
         width: 100%;
@@ -34,9 +36,9 @@
         resize: none;
     }
     .chat-button {
-        position: absolute;
+        position: fixed;
         bottom: 4px;
-        right: 20px;
+        right: 26px;
     }
     .chat-me{
         font-size: 18px;
@@ -44,6 +46,27 @@
     }
     .chat-other{
         font-size: 18px;
+    }
+    .chat-emoji{
+        position: fixed;
+        bottom: 4px;
+        right: 3px;
+        cursor: pointer;
+    }
+    .chat-emoji-container{
+        background-color: white;
+        text-align: center;
+        position: absolute;
+        height: 160px;
+        overflow: auto;
+        top: -180px;
+        width: 400px;
+        .ant-col-2{
+            &:hover{
+                background-color: #ccc;
+                cursor: pointer;
+            }
+        }
     }
 }
 

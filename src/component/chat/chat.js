@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button, Row, Col } from 'antd'
 import { connect } from 'react-redux'
 import { sendMsg, getMessageList, recvMsg } from '@/redux/chat.redux'
 import { getChatId } from '@/util';
@@ -14,7 +14,8 @@ class Chat extends React.Component {
     super(props);
     this.state = {
       text: '',
-      msg: []
+      msg: [],
+      showEmoji: false
     }
   }
   componentDidMount() {
@@ -49,6 +50,14 @@ class Chat extends React.Component {
   }
   render() {
     // console.log(this.props)
+    // 表情
+    const emoji = '😃 😄 😁 😆 😅 😂 😊 😇 🙂 🙃 😉 😌 😍 😘 😗 😙 😚 😋 😜 😝 😛 🤑 🤗 🤓 😎 😏 😒 😞 😔 😟 😕 🙁 😣 😖 😫 😩 😤 😠 😡 😶 😐 😑 😯 😦 😧 😮 😲 😵 😳 😱 😨 😰 😢 😥 😭 😓 😪 😴 🙄 🤔 😬 🤐 😷 🤒 🤕 😈 👿 👹 👺 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾 👐 🙌 👏 🙏 👍 👎 👊 ✊ 🤘 👌 👈 👉 👆 👇 ✋  🖐 🖖 👋  💪 🖕 ✍️  💅 🖖 💄 💋 👄 👅 👂 👃 👁 👀 '
+      .split(' ')
+      // filter 防止会有两个空格
+      .filter(v => v)
+    // 去重
+    const emoji2 = Array.from(new Set(emoji))
+    // 把类数组转化成数组
     const userid = this.props.match.params.user;
     const user = this.props.chat.users;
     const chatid = getChatId(userid, this.props.user._id)// 别人的和自己的id
@@ -73,9 +82,39 @@ class Chat extends React.Component {
               </p>
           })}
         </div>
-        <div className="chat-message">
+        <div className="chat-message"
+          onClick={(e) => {
+            if(e.target.className==='chat-emoji'||e.target.className==='ant-col-2'){
+              return;
+            }
+            this.setState({
+              showEmoji:false
+            })
+          }}
+        >
           <textarea className="chat-textarea" onChange={this.handleChange.bind(this, 'text')} value={this.state.text}></textarea>
+          <span className="chat-emoji" aria-label="" role="img"
+            onClick={() => {
+              this.setState({
+                showEmoji: !this.state.showEmoji
+              })
+            }}
+          >😄</span>
           <Button type="primary" className="chat-button" onClick={this.handleSend.bind(this)}>发送</Button>
+          {this.state.showEmoji ? <div className="chat-emoji-container">
+            <Row type="flex">
+              {emoji2.map(v => {
+                return <Col span={2} key={v} title={v}
+                  onClick={(e) => {
+                    this.setState({
+                      text: this.state.text + e.target.title
+                    })
+                  }}
+                >{v}</Col>
+              })}
+            </Row>
+          </div> : null}
+
         </div>
       </div>
     )

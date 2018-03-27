@@ -34,7 +34,7 @@ class AvatarSelector extends React.Component {
           {
             imgList.map((value, index) => {
               return (
-                <Col span={3} key={value.text} className="avatar-selector-col" >
+                <Col span={3} key={value.text} className="avatar-selector-col">
                   <img src={value.icon} alt="" onClick={this.handleSelect.bind(this, value)} />
                 </Col>
               )
