@@ -18,6 +18,7 @@ class Msg extends React.Component {
     const chatList = Object.values(msgGroup);
     const userid = this.props.user._id;
     console.log(chatList);
+
     return (
       <React.Fragment>
         <div className="msg-container">
@@ -31,6 +32,8 @@ class Msg extends React.Component {
               const targetId = userid === item[0].from ? item[0].to : item[0].from;
               const name = this.props.chat.users[targetId] ? this.props.chat.users[targetId].name : ''
               const avatar = this.props.chat.users[targetId] ? this.props.chat.users[targetId].avatar : ''
+              // 在右侧的数量
+              const unreadNum = item.filter(v => !v.unread && v.to === userid).length
               return (
                 <List.Item>
                   <List.Item.Meta
@@ -38,6 +41,7 @@ class Msg extends React.Component {
                     title={<span>用户名：<b>{name}</b></span>}
                     description={<span>内容：{lastItem.content}</span>}
                   />
+                  <div className="msg-circle">{unreadNum}</div>
                 </List.Item>
               )
             }}

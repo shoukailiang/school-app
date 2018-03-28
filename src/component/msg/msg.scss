@@ -4,4 +4,14 @@
   .ant-list-item-meta{
     cursor: pointer;
   }
+  .msg-circle{
+    width: 28px;
+    height: 28px;
+    background: red;
+    text-align: center;
+    line-height: 28px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+  }
 }
