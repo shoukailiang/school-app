@@ -67,7 +67,9 @@ class Chat extends React.Component {
     }
     return (
       <div className="chat-container">
-        <p className="chat-container-username">{user[userid].name}</p>
+        <p className="chat-container-username"><a onClick={()=>{
+          this.props.history.goBack()
+        }}>&lt;&lt;&lt;</a>{user[userid].name}</p>
         <div className="chat-content" ref="content">
           {chatmsg.map(v => {
             const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`);
@@ -84,11 +86,11 @@ class Chat extends React.Component {
         </div>
         <div className="chat-message"
           onClick={(e) => {
-            if(e.target.className==='chat-emoji'||e.target.className==='ant-col-2'){
+            if (e.target.className === 'chat-emoji' || e.target.className === 'ant-col-2') {
               return;
             }
             this.setState({
-              showEmoji:false
+              showEmoji: false
             })
           }}
         >

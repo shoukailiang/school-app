@@ -1,17 +1,20 @@
-.msg-container{
-  width: 800px;
-  margin: 100px auto;
-  .ant-list-item-meta{
-    cursor: pointer;
-  }
-  .msg-circle{
-    width: 28px;
-    height: 28px;
-    background: red;
-    text-align: center;
-    line-height: 28px;
-    border-radius: 50%;
-    color: white;
-    font-weight: bold;
-  }
+.msg-container {
+    width: 800px;
+    margin: 100px auto;
+    .ant-list-item {
+        cursor: pointer;
+        &:hover{
+            background-color: skyblue;
+        }
+    }
+    .msg-circle {
+        width: 28px;
+        height: 28px;
+        background: red;
+        text-align: center;
+        line-height: 28px;
+        border-radius: 50%;
+        color: white;
+        font-weight: bold;
+    }
 }
