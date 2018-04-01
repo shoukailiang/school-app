@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button, Row, Col } from 'antd'
 import { connect } from 'react-redux'
-import { sendMsg, getMessageList, recvMsg } from '@/redux/chat.redux'
+import { sendMsg, getMessageList, recvMsg,readMsg } from '@/redux/chat.redux'
 import { getChatId } from '@/util';
 import './chat.scss'
 
 @connect(
   state => state,
-  { sendMsg, getMessageList, recvMsg }
+  { sendMsg, getMessageList, recvMsg,readMsg }
 )
 class Chat extends React.Component {
   constructor(props) {
@@ -30,6 +30,13 @@ class Chat extends React.Component {
       this.props.getMessageList()
       this.props.recvMsg()
     }
+  }
+  // 离开这个路由，来发起请求read
+  componentWillUnmount() {
+    // 我发送给谁to
+    const to = this.props.match.params.user
+    // 消息列表点进去后修改消息数目
+    this.props.readMsg(to)
   }
   handleChange(key, e) {
     this.setState({
@@ -67,7 +74,7 @@ class Chat extends React.Component {
     }
     return (
       <div className="chat-container">
-        <p className="chat-container-username"><a onClick={()=>{
+        <p className="chat-container-username"><a onClick={() => {
           this.props.history.goBack()
         }}>&lt;&lt;&lt;</a>{user[userid].name}</p>
         <div className="chat-content" ref="content">

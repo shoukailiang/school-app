@@ -12,7 +12,7 @@ class Msg extends React.Component {
   render() {
     const msgGroup = {};
     this.props.chat.chatmsg.forEach(v => {
-      msgGroup[v.chatid] = msgGroup[v.chatid] || [];
+      msgGroup[v.chatid] = msgGroup[v.chatid] || [];  
       msgGroup[v.chatid].push(v)
     })
     // 将消息后发的放在前面
@@ -38,9 +38,9 @@ class Msg extends React.Component {
               const name = this.props.chat.users[targetId] ? this.props.chat.users[targetId].name : ''
               const avatar = this.props.chat.users[targetId] ? this.props.chat.users[targetId].avatar : ''
               // 在右侧的数量
-              const unreadNum = item.filter(v => !v.unread && v.to === userid).length;
+              const unreadNum = item.filter(v => !v.read && v.to === userid).length;
               return (
-                <List.Item onClick={()=>{
+                <List.Item onClick={() => {
                   // 点击聊天项跳转到聊天页面
                   this.props.history.push(`/chat/${targetId}`)
                 }}>
@@ -49,7 +49,7 @@ class Msg extends React.Component {
                     title={<span>用户名：<b>{name}</b></span>}
                     description={<span>内容：{lastItem.content}</span>}
                   />
-                  <div className="msg-circle">{unreadNum}</div>
+                  {unreadNum ? <div className="msg-circle">{unreadNum}</div> : null}
                 </List.Item>
               )
             }}

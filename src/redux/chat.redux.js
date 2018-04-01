@@ -18,11 +18,13 @@ export function chat(state = initState, action) {
   switch (action.type) {
     case MSG_LIST:
       // unread :flase和是发送给我的unread,我发送的不算
-      return { ...state, users: action.payload.users, chatmsg: action.payload.msgs, unread: action.payload.msgs.filter(v => !v.unread && v.to === action.payload.userid).length }
+      return { ...state, users: action.payload.users, chatmsg: action.payload.msgs, unread: action.payload.msgs.filter(v => !v.read && v.to === action.payload.userid).length }
     case MSG_RECV:
       // 发给我的才要+1
       const n = action.payload.data.to === action.payload.userid ? 1 : 0;
       return { ...state, chatmsg: [...state.chatmsg, action.payload.data], unread: state.unread + n }
+    case MSG_READ:
+      return { ...state, chatmsg: state.chatmsg.map(v => ({ ...v, read: true })), unread: state.unread - action.payload.num }
     default:
       return state;
   }
@@ -33,6 +35,11 @@ function msglist(msgs, users, userid) {
 }
 function msgrecv(data, userid) {
   return { type: MSG_RECV, payload: { data, userid } }
+}
+
+// 从谁，发给谁
+function msgRead({ userid, from, num }) {
+  return { type: MSG_READ, payload: { userid, from, num } }
 }
 
 // action creater 返回的得是一个object或者函数
@@ -51,6 +58,20 @@ export function recvMsg() {
       const userid = getState().user._id;
       dispatch(msgrecv(data, userid))
     })
+  }
+}
+
+// from 来自谁发送给我的信息
+export function readMsg(from) {
+  return (dispatch, getState) => {
+    axios.post('/user/readmsg', { from })
+      .then(res => {
+        // 获取当前用户的id
+        const userid = getState().user._id;
+        if (res.status === 200 && res.data.code === 0) {
+          dispatch(msgRead({ userid, from, num: res.data.num }))
+        }
+      })
   }
 }
 

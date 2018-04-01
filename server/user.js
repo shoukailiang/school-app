@@ -122,6 +122,26 @@ Router.get('/info', (req, res) => {
   })
 })
 
+// 聊天列表点进去后read的改变
+Router.post('/readmsg', function (req, res) {
+  const userid = req.cookies.userid;
+  const { from } = req.body;
+  // console.log(userid,from);
+  // 我们更新的是对方发给我的聊天信息
+  Chat.update({ from, to: userid },
+    { '$set': { read: true } },
+      // mongose里面，默认是修改第一条，修改多条要加下面的
+    { 'multi': true },
+    function (err, doc) {
+      console.log(doc);//{ n: 1, nModified: 1, ok: 1 } n:数据量，nModified:修改了几条，ok:1修改是成功的
+      if (!err) {
+        return res.json({ code: 0,num:doc.nModified })
+      } else {
+        return res.json({ code: 1, msg: "修改失败" })
+      }
+    })
+})
+
 
 
 // 倘若一些密码很简单，会被进行暴力破解，这时候就默认给用户的密码加上一些“盐”
