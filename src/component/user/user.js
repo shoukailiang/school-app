@@ -13,6 +13,7 @@ class User extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
+    this.logout=this.logout.bind(this)
   }
   logout() {
     const confirm = Modal.confirm
@@ -49,7 +50,7 @@ class User extends React.Component {
                 {props.desc.split("\n").map(v => <p key={v}>{v}</p>)}
               </div>}
           />
-          <Button type="primary" onClick={this.logout.bind(this)}>退出登录</Button>
+          <Button type="primary" onClick={this.logout}>退出登录</Button>
         </Card>
       </div >
     ) : <Redirect to={props.redirectTo}></Redirect>

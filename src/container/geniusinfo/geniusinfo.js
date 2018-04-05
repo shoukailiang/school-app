@@ -23,6 +23,7 @@ class Geniusinfo extends React.Component {
       desc: "",
       avatar: ""
     }
+    this.SelectAvatar=this.SelectAvatar.bind(this)
   }
   handleChange(key, e) {
     this.setState({
@@ -42,7 +43,7 @@ class Geniusinfo extends React.Component {
       <React.Fragment>
         {redirect && redirect !== path ? <Redirect to={redirect}></Redirect> : null}
         <InfoNav name="genius"></InfoNav>
-        <AvatarSelector SelectAvatar={this.SelectAvatar.bind(this)}></AvatarSelector>
+        <AvatarSelector SelectAvatar={this.SelectAvatar}></AvatarSelector>
         <div className="info-container">
           <h2>请输入您的信息：</h2>
           <Input placeholder="招聘岗位" size="large" value={this.state.title} onChange={this.handleChange.bind(this, "title")} />

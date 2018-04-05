@@ -14,6 +14,11 @@ const FormItem = Form.Item
 )
 @LoginRegisterHoc
 class Login extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleLogin = this.handleLogin.bind(this)
+    this.returnRegister=this.returnRegister.bind(this)
+  }
   returnRegister() {
     this.props.history.push('/register')
   }
@@ -47,11 +52,11 @@ class Login extends React.Component {
               />
             </FormItem>
             <Button type="primary" htmlType="submit" className="login-register-form-button" size="large"
-              onClick={this.handleLogin.bind(this)}>
+              onClick={this.handleLogin}>
               登录
             </Button>
             <Button type="primary" className="login-register-form-button" size="large"
-              onClick={this.returnRegister.bind(this)}>
+              onClick={this.returnRegister}>
               注册
             </Button>
           </Form>

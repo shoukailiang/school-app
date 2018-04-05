@@ -5,6 +5,7 @@ export default function LoginRegisterHoc(Comp) {
     constructor(props) {
       super(props)
       this.state = {}
+      this.handleChange=this.handleChange.bind(this)
     }
     handleChange(key, event) {
       // key要加[],不加就变成字符串了
@@ -14,7 +15,7 @@ export default function LoginRegisterHoc(Comp) {
     }
     render() {
       return (
-        <Comp {...this.props} handleChange={this.handleChange.bind(this)} state={this.state}></Comp>
+        <Comp {...this.props} handleChange={this.handleChange} state={this.state}></Comp>
       )
     }
   }

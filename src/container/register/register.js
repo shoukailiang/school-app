@@ -15,9 +15,14 @@ const RadioGroup = Radio.Group
 )
 @LoginRegisterHoc
 class Register extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleRegister = this.handleRegister.bind(this)
+    this.backLogin = this.backLogin.bind(this)
+  }
   // 设置type的默认项
   componentDidMount() {
-    
+
   }
   backLogin() {
     this.props.history.push('/login')
@@ -60,7 +65,7 @@ class Register extends React.Component {
                 onChange={this.props.handleChange.bind(this, 'repwd')}
               />
             </FormItem>
-            <RadioGroup onChange={this.props.handleChange.bind(this, 'type')} style={{ marginBottom: '10px' }}>
+            <RadioGroup onChange={this.props.handleChange.bind(this, 'type')}>
               <Radio value='boss'
                 checked={this.props.state.type === 'boss'}
               >Boss
@@ -70,10 +75,10 @@ class Register extends React.Component {
                 checked={this.props.state.type === 'genius'}
               >牛人</Radio>
             </RadioGroup>
-            <Button type="primary" className="login-register-form-button" size="large" onClick={this.handleRegister.bind(this)}>
+            <Button type="primary" className="login-register-form-button" size="large" onClick={this.handleRegister}>
               注册
             </Button>
-            <a onClick={this.backLogin.bind(this)}>
+            <a onClick={this.backLogin}>
               返回登录
             </a>
           </Form>

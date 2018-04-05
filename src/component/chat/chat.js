@@ -17,6 +17,7 @@ class Chat extends React.Component {
       msg: [],
       showEmoji: false
     }
+    this.handleSend=this.handleSend.bind(this)
   }
   componentDidMount() {
     /* //监听后端广播到全局 的信息
@@ -109,7 +110,7 @@ class Chat extends React.Component {
               })
             }}
           >😄</span>
-          <Button type="primary" className="chat-button" onClick={this.handleSend.bind(this)}>发送</Button>
+          <Button type="primary" className="chat-button" onClick={this.handleSend}>发送</Button>
           {this.state.showEmoji ? <div className="chat-emoji-container">
             <Row type="flex">
               {emoji2.map(v => {
