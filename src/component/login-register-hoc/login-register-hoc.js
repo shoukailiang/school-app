@@ -3,7 +3,7 @@ import React from 'react'
 export default function LoginRegisterHoc(Comp) {
   return class WarperComp extends React.Component {
     constructor(props) {
-      super(props);
+      super(props)
       this.state = {}
     }
     handleChange(key, event) {

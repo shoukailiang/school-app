@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Row, Col } from 'antd'
 import PropTypes from 'prop-types'
 import './avatarSelector.scss'
@@ -45,4 +45,4 @@ class AvatarSelector extends React.Component {
     )
   }
 }
-export default AvatarSelector;
+export default AvatarSelector

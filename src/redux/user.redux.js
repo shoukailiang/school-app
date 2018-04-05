@@ -23,7 +23,7 @@ export function user(state = ininState, action) {
     case LOAD_DATA:
       return { ...state, ...action.payload }
     default:
-      return state;
+      return state
   }
 }
 

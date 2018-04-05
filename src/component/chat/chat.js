@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Row, Col } from 'antd'
 import { connect } from 'react-redux'
 import { sendMsg, getMessageList, recvMsg,readMsg } from '@/redux/chat.redux'
-import { getChatId } from '@/util';
+import { getChatId } from '@/util'
 import './chat.scss'
 
 @connect(
@@ -11,7 +11,7 @@ import './chat.scss'
 )
 class Chat extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       text: '',
       msg: [],
@@ -46,10 +46,10 @@ class Chat extends React.Component {
   handleSend() {
     /* socket.emit('sendmsg', { text: this.state.text }) */
     // 从谁发出去
-    const from = this.props.user._id;
+    const from = this.props.user._id
     // 谁接收
-    const to = this.props.match.params.user;
-    const msg = this.state.text;
+    const to = this.props.match.params.user
+    const msg = this.state.text
     this.props.sendMsg({ from, to, msg })
     this.setState({
       text: ''
@@ -65,12 +65,12 @@ class Chat extends React.Component {
     // 去重
     const emoji2 = Array.from(new Set(emoji))
     // 把类数组转化成数组
-    const userid = this.props.match.params.user;
-    const user = this.props.chat.users;
+    const userid = this.props.match.params.user
+    const user = this.props.chat.users
     const chatid = getChatId(userid, this.props.user._id)// 别人的和自己的id
-    const chatmsg = this.props.chat.chatmsg.filter(v => v.chatid === chatid);
+    const chatmsg = this.props.chat.chatmsg.filter(v => v.chatid === chatid)
     if (!user[userid]) {
-      return null;
+      return null
     }
     return (
       <div className="chat-container">
@@ -79,7 +79,7 @@ class Chat extends React.Component {
         }}>&lt;&lt;&lt;</a>{user[userid].name}</p>
         <div className="chat-content" ref="content">
           {chatmsg.map(v => {
-            const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`);
+            const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`)
             return v.from === userid
               ? <p key={v._id} className="chat-other">
                 <img src={avatar} alt="" />
@@ -94,7 +94,7 @@ class Chat extends React.Component {
         <div className="chat-message"
           onClick={(e) => {
             if (e.target.className === 'chat-emoji' || e.target.className === 'ant-col-2') {
-              return;
+              return
             }
             this.setState({
               showEmoji: false
@@ -129,4 +129,4 @@ class Chat extends React.Component {
     )
   }
 }
-export default Chat;
+export default Chat

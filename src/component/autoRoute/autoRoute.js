@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import axios from 'axios'
 /* 引入后就能变成路由组件 */
 import { withRouter } from 'react-router-dom'
@@ -14,7 +14,7 @@ class AutoRoute extends React.Component {
     var publicList = ['/register', '/login']
     var pathname = this.props.location.pathname
     if (publicList.indexOf(pathname) !== -1) {
-      return null;
+      return null
     }
     axios.get('/user/info')
       .then(res => {
@@ -35,4 +35,4 @@ class AutoRoute extends React.Component {
     return null
   }
 }
-export default AutoRoute;
+export default AutoRoute

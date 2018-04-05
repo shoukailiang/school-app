@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
-import { Card, Button, Modal } from 'antd';
+import { Card, Button, Modal } from 'antd'
 import { Redirect } from 'react-router-dom'
 import BrowserCookie from 'browser-cookies'
 import { logoutSubmit } from '@/redux/user.redux'
@@ -11,12 +11,12 @@ import './user.scss'
 )
 class User extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {}
   }
   logout() {
-    const confirm = Modal.confirm;
-    const This = this;
+    const confirm = Modal.confirm
+    const This = this
     confirm({
       title: '你确定要退出登录吗?',
       content: '',
@@ -24,17 +24,17 @@ class User extends React.Component {
       okType: 'info',
       cancelText: '返回',
       onOk() {
-        BrowserCookie.erase('userid');
+        BrowserCookie.erase('userid')
         This.props.logoutSubmit()
       },
       onCancel() {
-        console.log('Cancel');
+        console.log('Cancel')
       },
-    });
+    })
   }
   render() {
-    const { Meta } = Card;
-    const props = this.props;
+    const { Meta } = Card
+    const props = this.props
     return props.user ? (
       <div className="user-container">
         <Card
@@ -55,4 +55,4 @@ class User extends React.Component {
     ) : <Redirect to={props.redirectTo}></Redirect>
   }
 }
-export default User;
+export default User

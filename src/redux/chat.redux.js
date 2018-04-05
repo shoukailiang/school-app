@@ -21,14 +21,14 @@ export function chat(state = initState, action) {
       return { ...state, users: action.payload.users, chatmsg: action.payload.msgs, unread: action.payload.msgs.filter(v => !v.read && v.to === action.payload.userid).length }
     case MSG_RECV:
       // 发给我的才要+1
-      const n = action.payload.data.to === action.payload.userid ? 1 : 0;
+      const n = action.payload.data.to === action.payload.userid ? 1 : 0
       return { ...state, chatmsg: [...state.chatmsg, action.payload.data], unread: state.unread + n }
     case MSG_READ:
-      const { from, num } = action.payload;
-      // 如果from和v.from相同的话，设置成treu，否侧还是原来的read状态
+      const { from, num } = action.payload
+      // 如果from和v.from相同的话，设置成treu，否侧还是原来的read状态 
       return { ...state, chatmsg: state.chatmsg.map(v => ({ ...v, read: from === v.from ? true : v.read })), unread: state.unread - num }
     default:
-      return state;
+      return state
   }
 }
 
@@ -57,7 +57,7 @@ export function recvMsg() {
   return (dispatch, getState) => {
     socket.on('recvmsg', function (data) {
       console.log(data)
-      const userid = getState().user._id;
+      const userid = getState().user._id
       dispatch(msgrecv(data, userid))
     })
   }
@@ -69,7 +69,7 @@ export function readMsg(from) {
     axios.post('/user/readmsg', { from })
       .then(res => {
         // 获取当前用户的id
-        const userid = getState().user._id;
+        const userid = getState().user._id
         if (res.status === 200 && res.data.code === 0) {
           dispatch(msgRead({ userid, from, num: res.data.num }))
         }
@@ -82,7 +82,7 @@ export function getMessageList() {
     axios.get('/user/getmsglist')
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          const userid = getState().user._id;
+          const userid = getState().user._id
           dispatch(msglist(res.data.msgs, res.data.users, userid))
         }
       })

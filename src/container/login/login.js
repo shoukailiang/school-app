@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Icon, Input, Button, Alert } from 'antd';
+import React from 'react'
+import { Form, Icon, Input, Button, Alert } from 'antd'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Logo from '@/component/logo/logo'
@@ -7,7 +7,7 @@ import { login } from '@/redux/user.redux'
 import BackgroundCarousel from '@/component/carousel/LRcarousel'
 import LoginRegisterHoc from '@/component/login-register-hoc/login-register-hoc'
 import '../login-register.scss'
-const FormItem = Form.Item;
+const FormItem = Form.Item
 @connect(
   state => state.user,
   { login }
@@ -60,4 +60,4 @@ class Login extends React.Component {
     )
   }
 }
-export default Login;
+export default Login

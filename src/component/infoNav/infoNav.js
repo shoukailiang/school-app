@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 class InfoNav extends React.Component {
@@ -13,7 +13,7 @@ class InfoNav extends React.Component {
       >span{
         color:#ccc;
       }
-    `;
+    `
     return (
       <React.Fragment>
         <H1>
@@ -23,4 +23,4 @@ class InfoNav extends React.Component {
     )
   }
 }
-export default InfoNav;
+export default InfoNav

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Icon, Input, Button, Radio, Alert } from 'antd';
+import React from 'react'
+import { Form, Icon, Input, Button, Radio, Alert } from 'antd'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Logo from '@/component/logo/logo'
@@ -7,8 +7,8 @@ import BackgroundCarousel from '@/component/carousel/LRcarousel'
 import '../login-register.scss'
 import { register } from '@/redux/user.redux'
 import LoginRegisterHoc from '@/component/login-register-hoc/login-register-hoc'
-const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
+const FormItem = Form.Item
+const RadioGroup = Radio.Group
 @connect(
   state => state.user,
   { register }
@@ -82,4 +82,4 @@ class Register extends React.Component {
     )
   }
 }
-export default Register;
+export default Register

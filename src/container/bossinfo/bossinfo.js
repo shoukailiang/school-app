@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Input, Button } from 'antd'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { update } from '@/redux/user.redux'
 import InfoNav from '@/component/infoNav/infoNav'
 import AvatarSelector from '@/component/avatarSelector/avatarSelector'
 import '../bossinfo-geniusinfo.scss'
-const { TextArea } = Input;
+const { TextArea } = Input
 @connect(
   state => state.user,
   { update }
@@ -37,7 +37,7 @@ class Bossinfo extends React.Component {
     })
   }
   render() {
-    const redirect = this.props.redirectTo;
+    const redirect = this.props.redirectTo
     const path = this.props.location.pathname
     return (
       <React.Fragment>
@@ -59,4 +59,4 @@ class Bossinfo extends React.Component {
     )
   }
 }
-export default Bossinfo;
+export default Bossinfo

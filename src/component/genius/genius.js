@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import { getUserList } from '@/redux/chatuser.redux'
 import Usercard from '../usercard/usercard'
@@ -19,4 +19,4 @@ class Genius extends React.Component {
     )
   }
 }
-export default Genius;
+export default Genius

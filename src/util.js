@@ -6,7 +6,7 @@ export function getRedirectPath({ type, avatar }) {
   if (!avatar) {
     url += 'info'
   }
-  return url;
+  return url
 }
 export function getChatId(userid, targetid) {
    // 用sort，为了解决（userId和targetId谁在前都无所谓）

@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 //处理异步,需要redux-thunk插件
@@ -23,7 +23,7 @@ const store = createStore(reducers, compose(
   applyMiddleware(thunk),
   //调试工具
   window.devToolsExtension ? window.devToolsExtension() : f => f
-));
+))
 
 ReactDOM.render(
   <Provider store={store}>
@@ -43,5 +43,5 @@ ReactDOM.render(
       </React.Fragment>
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root'));
-registerServiceWorker();
+  document.getElementById('root'))
+registerServiceWorker()

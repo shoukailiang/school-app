@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Input, Button } from 'antd'
@@ -7,7 +7,7 @@ import InfoNav from '@/component/infoNav/infoNav'
 import { update } from '@/redux/user.redux'
 import AvatarSelector from '@/component/avatarSelector/avatarSelector'
 import '../bossinfo-geniusinfo.scss'
-const { TextArea } = Input;
+const { TextArea } = Input
 @connect(
   state => state.user,
   { update }
@@ -36,8 +36,8 @@ class Geniusinfo extends React.Component {
   }
 
   render() {
-    const redirect = this.props.redirectTo;
-    const path = this.props.location.pathname;
+    const redirect = this.props.redirectTo
+    const path = this.props.location.pathname
     return (
       <React.Fragment>
         {redirect && redirect !== path ? <Redirect to={redirect}></Redirect> : null}
@@ -55,4 +55,4 @@ class Geniusinfo extends React.Component {
     )
   }
 }
-export default Geniusinfo;
+export default Geniusinfo

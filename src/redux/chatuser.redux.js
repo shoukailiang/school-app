@@ -1,5 +1,5 @@
 import axios from 'axios'
-const USER_LIST = 'USER_LIST';
+const USER_LIST = 'USER_LIST'
 const initState = {
   userlist: []
 }

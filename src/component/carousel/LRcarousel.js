@@ -1,5 +1,5 @@
-import React from 'react';
-import { Carousel } from 'antd';
+import React from 'react'
+import { Carousel } from 'antd'
 import './LRcarousel.scss'
 class LRcarousel extends React.Component {
   constructor(props) {
@@ -10,10 +10,10 @@ class LRcarousel extends React.Component {
     }
   }
   componentDidMount() {
-    window.addEventListener('resize', this.handleHeight);
+    window.addEventListener('resize', this.handleHeight)
   }
   handleHeight() {
-    const screenHeight = document.documentElement.clientHeight;
+    const screenHeight = document.documentElement.clientHeight
     this.setState({
       windowHeight: screenHeight
     })
@@ -28,7 +28,7 @@ class LRcarousel extends React.Component {
       'http://fd.topitme.com/d/02/ec/1107599134f8aec02do.jpg',
       'http://www.wmpic.me/wp-content/uploads/2014/03/2014030314353773.jpg'
     ]
-    var _this = this;
+    var _this = this
     return (
       <Carousel effect="fade" autoplay>
         {images.map(function (value, index) {
@@ -38,4 +38,4 @@ class LRcarousel extends React.Component {
     )
   }
 }
-export default LRcarousel;
+export default LRcarousel

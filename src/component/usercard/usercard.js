@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Icon } from 'antd';
+import React from 'react'
+import { Card, Icon } from 'antd'
 import { withRouter } from 'react-router-dom'
 import './usercard.scss'
 @withRouter
@@ -35,4 +35,4 @@ class Usercard extends React.Component {
     )
   }
 }
-export default Usercard;
+export default Usercard

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import logoImg from './job.png'
 import './logo.scss'
 class Logo extends React.Component {
@@ -10,4 +10,4 @@ class Logo extends React.Component {
     )
   }
 }
-export default Logo;
+export default Logo
