@@ -1,6 +1,11 @@
 # boss-recruitment
 > webpack+react全家桶+ant-design+express+mongodb+socket.io 全栈开发招聘页面
 
+# 线上查看
+[传送门](http://boss.shoukailiang.cn/login)
+- 大哥们数据别乱搞
+- 多用户要多浏览器下打开
+
 # 技术栈
 - **React16**
 - **redux** 管理状态
