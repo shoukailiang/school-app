@@ -1,13 +1,30 @@
 .msg-container {
     width: 800px;
     margin: 100px auto;
-    .ant-list-item {
+    .msg-item {
         cursor: pointer;
-        &:hover{
+        display: flex;
+        align-items:center;
+        &:hover {
             background-color: skyblue;
         }
+        .msg-name-avatar{
+            display: flex;
+            flex-direction:column;
+            padding-right: 5%;
+        }
+        p.msg-content {
+            width: 80%;
+            height: 64px;
+            overflow: hidden;
+            margin-bottom: 0;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
     }
     .msg-circle {
+        display: block;
         width: 28px;
         height: 28px;
         background: red;

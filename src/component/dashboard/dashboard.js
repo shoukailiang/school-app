@@ -62,11 +62,11 @@ class Dashboard extends React.Component {
           {navList.find(v => v.path === pathname).title}
           <NavLink data={navList}></NavLink>
         </nav>
-        <Switch>
-          {navList.map(v => {
-            return <Route path={v.path} component={v.component} key={v.path}></Route>
-          })}
-        </Switch>
+          <Switch>
+            {navList.map(v => {
+              return <Route path={v.path} component={v.component} key={v.path}></Route>
+            })}
+          </Switch>
       </React.Fragment>
     )
   }

@@ -39,7 +39,6 @@ class User extends React.Component {
     return props.user ? (
       <div className="user-container">
         <Card
-          style={{ margin: "auto", textAlign: "center" }}
         >
           <img src={require(`../avatarSelector/images/${props.avatar}.png`)} alt="" />
           <Meta

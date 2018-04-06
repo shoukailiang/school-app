@@ -28,11 +28,11 @@ class LRcarousel extends React.Component {
       'http://fd.topitme.com/d/02/ec/1107599134f8aec02do.jpg',
       'http://www.wmpic.me/wp-content/uploads/2014/03/2014030314353773.jpg'
     ]
-    var _this = this
+    const style = { height: this.state.windowHeight, width: '100%' }
     return (
       <Carousel effect="fade" autoplay>
         {images.map(function (value, index) {
-          return <img key={index} style={{ height: _this.state.windowHeight, width: '100%' }} alt="bg" src={value}></img>
+          return <img key={index} style={style} alt="bg" src={value}></img>
         })}
       </Carousel>
     )

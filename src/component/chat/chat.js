@@ -73,6 +73,7 @@ class Chat extends React.Component {
     if (!user[userid]) {
       return null
     }
+
     return (
       <div className="chat-container">
         <p className="chat-container-username"><a onClick={() => {
@@ -81,6 +82,9 @@ class Chat extends React.Component {
         <div className="chat-content" ref="content">
           {chatmsg.map(v => {
             const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`)
+            console.log('====================================')
+            console.log(user[v.from].avatar)
+            console.log('====================================')
             return v.from === userid
               ? <p key={v._id} className="chat-other">
                 <img src={avatar} alt="" />
