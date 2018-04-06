@@ -1,7 +1,8 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getMessageList, recvMsg } from '@/redux/chat.redux'
+import QueueAnim from 'rc-queue-anim'
 import NavLink from '../navLink/navLink'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
@@ -56,20 +57,19 @@ class Dashboard extends React.Component {
       }
     ]
     const { pathname } = this.props.location
+    const page = navList.find(v => v.path === pathname)
+    // 让动画生效，只渲染一个Route,根据当前的path决定组件
     return (
       <React.Fragment>
         <nav className="dashboard-nav">
           {navList.find(v => v.path === pathname).title}
           <NavLink data={navList}></NavLink>
         </nav>
-          <Switch>
-            {navList.map(v => {
-              return <Route path={v.path} component={v.component} key={v.path}></Route>
-            })}
-          </Switch>
+        <QueueAnim type="scaleX" delay={300} >
+          <Route path={page.path} component={page.component} key={page.path}></Route>
+        </QueueAnim>
       </React.Fragment>
     )
   }
 }
-
 export default Dashboard
