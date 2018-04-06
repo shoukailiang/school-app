@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParse = require('body-parser');
 const cookieParse = require('cookie-parser')
 const userRoute = require('./user');
@@ -10,6 +11,17 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server)
 app.use(cookieParse());
 app.use(bodyParse.json())
+
+// 设置静态资源
+app.use('/',express.static(path.resolve('build')))
+// 中间件
+app.use(function(req,res,next){
+  // 设置一下白名单
+  if(req.url.startsWith('/user/')||req.url.startsWith('/static/')){
+    return next()
+  }
+  return res.sendFile(path.resolve('build/index.html'))
+})
 
 // 监听到连接，参数socket指的是当前这次连接的socket,请求，io是指全局的请求
 // io是全局的请求，socket是当前这次连接的请求

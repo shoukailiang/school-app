@@ -14,6 +14,7 @@
 - **styled-component** 让样式也能变成组件
 - **socket.io**  通信
 - **socket.io-client**  socket.io的客户端
+- **Ant Motion** 快速在 React 框架中使用动画
 
 # 启动项目
 ```
@@ -61,8 +62,22 @@ port=27018
 - 用户的退出
 - 聊天信息的数量
 - 牛人和boss的聊天
+- Ant Motion动效
 ## 正在做的
 - 完善页面的美观程度
+
+## 打包
+```
+# 编译打包后，生成build目录
+npm run build
+# express中间件，拦截路由，手动渲染index.html
+# build设置为静态资源
+```
+
+### 打包后怎么启动
+- 会发现直接打开index.html是不行的，需要用后端渲染前端html,没有3000这个端口了
+- 在更目录下npm run server 
+- 打开 localhost:后端端口号/login
 
 ## 注意
 - 若前端页面npm start报错，下一个redux的chrome插件就好了 `Redux DevTools`
