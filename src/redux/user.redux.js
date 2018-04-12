@@ -61,7 +61,7 @@ export function register({ user, pwd, repwd, type }) {
   if (pwd.length < 7) {
     return errorMsg("密码最少需要7位")
   }
-  if(!type){
+  if (!type) {
     return errorMsg("请选择注册类型")
   }
   // 异步的写法
@@ -79,15 +79,13 @@ export function register({ user, pwd, repwd, type }) {
 // info 
 
 export function update(data) {
-  return dispatch => {
-    axios.post('/user/update', data)
-      .then(res => {
-        if (res.status === 200 && res.data.code === 0) {
-          dispatch(authSuccess(res.data.data))
-        } else {
-          dispatch(errorMsg(res.data.msg))
-        }
-      })
+  return async dispatch => {
+    const res = await axios.post('/user/update', data)
+    if (res.status === 200 && res.data.code === 0) {
+      dispatch(authSuccess(res.data.data))
+    } else {
+      dispatch(errorMsg(res.data.msg))
+    }
   }
 }
 
@@ -96,14 +94,12 @@ export function login({ user, pwd }) {
   if (!user || !pwd) {
     errorMsg("用户名或者密码必须输入")
   }
-  return dispatch => {
-    axios.post('/user/login', { user, pwd })
-      .then((res) => {
-        if (res.status === 200 && res.data.code === 0) {
-          dispatch(authSuccess(res.data.data))
-        } else {
-          dispatch(errorMsg(res.data.msg))
-        }
-      })
+  return async dispatch => {
+    const res = await axios.post('/user/login', { user, pwd })
+    if (res.status === 200 && res.data.code === 0) {
+      dispatch(authSuccess(res.data.data))
+    } else {
+      dispatch(errorMsg(res.data.msg))
+    }
   }
 }

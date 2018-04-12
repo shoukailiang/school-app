@@ -65,15 +65,13 @@ export function recvMsg() {
 
 // from 来自谁发送给我的信息
 export function readMsg(from) {
-  return (dispatch, getState) => {
-    axios.post('/user/readmsg', { from })
-      .then(res => {
-        // 获取当前用户的id
-        const userid = getState().user._id
-        if (res.status === 200 && res.data.code === 0) {
-          dispatch(msgRead({ userid, from, num: res.data.num }))
-        }
-      })
+  return async (dispatch, getState) => {
+    const res = await axios.post('/user/readmsg', { from })
+    // 获取当前用户的id
+    const userid = getState().user._id
+    if (res.status === 200 && res.data.code === 0) {
+      dispatch(msgRead({ userid, from, num: res.data.num }))
+    }
   }
 }
 
