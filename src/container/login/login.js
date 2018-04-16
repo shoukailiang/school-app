@@ -1,11 +1,11 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Alert } from 'antd'
 import { connect } from 'react-redux'
+import { Form, Icon, Input, Button, Alert } from 'antd'
 import { Redirect } from 'react-router-dom'
-import Logo from '@/component/logo/logo'
-import { login } from '@/redux/user.redux'
-import BackgroundCarousel from '@/component/carousel/LRcarousel'
-import LoginRegisterHoc from '@/component/login-register-hoc/login-register-hoc'
+import Logo from '../../../src/component/logo/logo'
+import { login } from '../../redux/user.redux'
+import BackgroundCarousel from '../../../src/component/carousel/LRcarousel'
+import LoginRegisterHoc from '../../../src/component/login-register-hoc/login-register-hoc'
 import '../login-register.scss'
 const FormItem = Form.Item
 @connect(

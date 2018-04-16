@@ -1,10 +1,11 @@
-const express = require('express');
-const path = require('path');
-const bodyParse = require('body-parser');
-const cookieParse = require('cookie-parser')
-const userRoute = require('./user');
+import express from 'express';
+import path from 'path';
+import bodyParse from 'body-parser';
+import cookieParse from 'cookie-parser';
+import userRoute from './user';
+
 const app = express();
-const model = require('./model.js');
+import model from './model.js';
 const Chat = model.getModel('chat');
 // work with express socket.io和express绑定在一起
 const server = require('http').Server(app);
@@ -12,12 +13,14 @@ const io = require('socket.io')(server)
 app.use(cookieParse());
 app.use(bodyParse.json())
 
+
+
 // 设置静态资源
-app.use('/',express.static(path.resolve('build')))
+app.use('/', express.static(path.resolve('build')))
 // 中间件
-app.use(function(req,res,next){
+app.use(function (req, res, next) {
   // 设置一下白名单
-  if(req.url.startsWith('/user/')||req.url.startsWith('/static/')){
+  if (req.url.startsWith('/user/') || req.url.startsWith('/static/')) {
     return next()
   }
   return res.sendFile(path.resolve('build/index.html'))

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route,Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getMessageList, recvMsg } from '@/redux/chat.redux'
 import QueueAnim from 'rc-queue-anim'
@@ -59,17 +59,17 @@ class Dashboard extends React.Component {
     const { pathname } = this.props.location
     const page = navList.find(v => v.path === pathname)
     // 让动画生效，只渲染一个Route,根据当前的path决定组件
-    return (
+    return page?(
       <React.Fragment>
         <nav className="dashboard-nav">
-          {navList.find(v => v.path === pathname).title}
+          {page.title}
           <NavLink data={navList}></NavLink>
         </nav>
         <QueueAnim type="scaleX" delay={300} >
           <Route path={page.path} component={page.component} key={page.path}></Route>
         </QueueAnim>
       </React.Fragment>
-    )
+    ):<Redirect to='/msg'></Redirect>   
   }
 }
 export default Dashboard
