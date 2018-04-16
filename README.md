@@ -31,7 +31,7 @@ cd server && npm install
 # 启动react
 npm start 
 # 启动node服务
-cd server && npm start 
+npm run server
 ```
 ## 如何链接mongodb？
 - 默认你已经安装好mongodb,配好mongodb的环境变量，不配也没关系，多打几个路径而已
@@ -87,4 +87,7 @@ npm run build
 ## 注意
 - 若前端页面npm start报错，下一个redux的chrome插件就好了 `Redux DevTools`
 - 若还是报错，全局装一个`nodemon` 
+
+## 未实现的
+- 服务端渲染
 
