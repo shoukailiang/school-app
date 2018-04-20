@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route,Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getMessageList, recvMsg } from '@/redux/chat.redux'
+import { getMessageList, recvMsg } from '@/redux/actions'
 import QueueAnim from 'rc-queue-anim'
 import NavLink from '../navLink/navLink'
 import Boss from '../boss/boss'

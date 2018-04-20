@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Row, Col } from 'antd'
 import { connect } from 'react-redux'
-import { sendMsg, getMessageList, recvMsg,readMsg } from '@/redux/chat.redux'
+import { sendMsg, getMessageList, recvMsg,readMsg } from '@/redux/actions'
 import { getChatId } from '@/util'
 import './chat.scss'
 

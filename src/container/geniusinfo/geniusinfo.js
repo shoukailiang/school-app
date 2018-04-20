@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Input, Button } from 'antd'
 import PropTypes from 'prop-types'
 import InfoNav from '@/component/infoNav/infoNav'
-import { update } from '@/redux/user.redux'
+import { update } from '@/redux/actions'
 import AvatarSelector from '@/component/avatarSelector/avatarSelector'
 import '../bossinfo-geniusinfo.scss'
 const { TextArea } = Input

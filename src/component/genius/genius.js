@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getUserList } from '@/redux/chatuser.redux'
+import { getUserList } from '@/redux/actions'
 import Usercard from '../usercard/usercard'
 import '../public-component-css/boss-genius.scss'
 @connect(

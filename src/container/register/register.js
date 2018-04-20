@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import Logo from '@/component/logo/logo'
 import BackgroundCarousel from '@/component/carousel/LRcarousel'
 import '../login-register.scss'
-import { register } from '@/redux/user.redux'
+import { register } from '@/redux/actions'
 import LoginRegisterHoc from '@/component/login-register-hoc/login-register-hoc'
 const FormItem = Form.Item
 const RadioGroup = Radio.Group
