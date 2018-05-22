@@ -1,10 +1,5 @@
-# boss-recruitment
-> webpack+react全家桶+ant-design+express+mongodb+socket.io 全栈开发招聘页面
-
-# 线上查看
-[传送门](http://boss.shoukailiang.cn/login)
-- 大哥们数据别乱搞
-- 多用户要多浏览器下打开
+# 校园app
+> webpack+react全家桶+ant-design+express+mongodb+socket.io 校园app
 
 # 技术栈
 - **React16**
@@ -59,15 +54,7 @@ port=27018
 - 需要注意的是：linux和window的文件分隔符是不一样的，pwd打一下就知道了
 - 在etc文件里面运行 mongod --config mongo.conf （指定配置文件）
 # 目前已经完成的功能
-- 登录注册的简单实现
-- boss和牛人的信息完善页面（填写招聘信息，选择头像...）
-- boss查看牛人列表
-- 牛人查看boss
-- 个人中心
-- 用户的退出
-- 聊天信息的数量
-- 牛人和boss的聊天
-- Ant Motion动效
+
 ## 正在做的
 - 完善页面的美观程度
 
