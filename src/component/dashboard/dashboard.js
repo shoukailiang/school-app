@@ -61,13 +61,12 @@ class Dashboard extends React.Component {
     // 让动画生效，只渲染一个Route,根据当前的path决定组件
     return page?(
       <React.Fragment>
-        <nav className="dashboard-nav">
-          {page.title}
-          <NavLink data={navList}></NavLink>
-        </nav>
-        <QueueAnim type="scaleX" delay={300} >
+        <QueueAnim className="dashboard-wrapper" type="scaleX" delay={300} >
           <Route path={page.path} component={page.component} key={page.path}></Route>
         </QueueAnim>
+        <nav className="dashboard-nav">
+          <NavLink data={navList}></NavLink>
+        </nav>
       </React.Fragment>
     ):<Redirect to='/msg'></Redirect>   
   }

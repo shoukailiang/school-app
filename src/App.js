@@ -24,7 +24,7 @@ class App extends React.Component {
     return this.state.hasError ?
       <h2>页面出错了</h2>
       : (
-        <div>
+        <React.Fragment>
           {/* 检验是否有登录信息 */}
           <AutoRoute />
           {/* 有了switch后，匹配到path后就不会再匹配下去了 */}
@@ -36,7 +36,7 @@ class App extends React.Component {
             <Route path='/chat/:user' component={Chat}></Route>
             <Route component={Dashboard}></Route>
           </Switch>
-        </div>
+        </React.Fragment>
       )
   }
 }
