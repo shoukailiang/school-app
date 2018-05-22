@@ -1,14 +1,16 @@
 import React from 'react'
 import { Button, Row, Col } from 'antd'
 import { connect } from 'react-redux'
-import { sendMsg, getMessageList, recvMsg,readMsg } from '@/redux/actions'
+import { sendMsg, getMessageList, recvMsg, readMsg } from '@/redux/actions'
+import { withRouter } from 'react-router-dom'
 import { getChatId } from '@/util'
 import './chat.scss'
-
+@withRouter
 @connect(
   state => state,
-  { sendMsg, getMessageList, recvMsg,readMsg }
+  { sendMsg, getMessageList, recvMsg, readMsg }
 )
+
 class Chat extends React.Component {
   constructor(props) {
     super(props)
@@ -17,7 +19,7 @@ class Chat extends React.Component {
       msg: [],
       showEmoji: false
     }
-    this.handleSend=this.handleSend.bind(this)
+    this.handleSend = this.handleSend.bind(this)
   }
   componentDidMount() {
     /* //监听后端广播到全局 的信息
@@ -57,7 +59,6 @@ class Chat extends React.Component {
     })
   }
   render() {
-    // console.log(this.props)
     // 表情
     const emoji = '😃 😄 😁 😆 😅 😂 😊 😇 🙂 🙃 😉 😌 😍 😘 😗 😙 😚 😋 😜 😝 😛 🤑 🤗 🤓 😎 😏 😒 😞 😔 😟 😕 🙁 😣 😖 😫 😩 😤 😠 😡 😶 😐 😑 😯 😦 😧 😮 😲 😵 😳 😱 😨 😰 😢 😥 😭 😓 😪 😴 🙄 🤔 😬 🤐 😷 🤒 🤕 😈 👿 👹 👺 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾 👐 🙌 👏 🙏 👍 👎 👊 ✊ 🤘 👌 👈 👉 👆 👇 ✋  🖐 🖖 👋  💪 🖕 ✍️  💅 🖖 💄 💋 👄 👅 👂 👃 👁 👀 '
       .split(' ')
@@ -68,12 +69,13 @@ class Chat extends React.Component {
     // 把类数组转化成数组
     const userid = this.props.match.params.user
     const user = this.props.chat.users
-    const chatid = getChatId(userid, this.props.user._id)// 别人的和自己的id
-    const chatmsg = this.props.chat.chatmsg.filter(v => v.chatid === chatid)
     if (!user[userid]) {
       return null
     }
-
+    const chatid = getChatId(userid, this.props.user._id)// 别人的和自己的id  
+    console.log(chatid)
+    const chatmsg = this.props.chat.chatmsg.filter(v => v.chatid === chatid)
+    console.log(chatmsg)
     return (
       <div className="chat-container">
         <p className="chat-container-username"><a onClick={() => {
@@ -82,9 +84,6 @@ class Chat extends React.Component {
         <div className="chat-content" ref="content">
           {chatmsg.map(v => {
             const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`)
-            console.log('====================================')
-            console.log(user[v.from].avatar)
-            console.log('====================================')
             return v.from === userid
               ? <p key={v._id} className="chat-other">
                 <img src={avatar} alt="" />

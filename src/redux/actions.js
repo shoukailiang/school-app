@@ -9,7 +9,7 @@ const socket = io("ws://localhost:9999")
 function msglist(msgs, users, userid) {
   return { type: ActionTypes.MSG_LIST, payload: { msgs, users, userid } }
 }
-function msgrecv(data, userid) {
+function msgrecv(data, userid) {  
   return { type: ActionTypes.MSG_RECV, payload: { data, userid } }
 }
 
@@ -30,7 +30,6 @@ export function sendMsg({ from, to, msg }) {
 export function recvMsg() {
   return (dispatch, getState) => {
     socket.on('recvmsg', function (data) {
-      console.log(data)
       const userid = getState().user._id
       dispatch(msgrecv(data, userid))
     })
@@ -80,6 +79,7 @@ function errorMsg(msg) {
 function authSuccess(obj) {
   // 通过结构赋值的方式吧pwd字段给过滤掉
   const { pwd, ...data } = obj
+  console.log(data)
   return { type: ActionTypes.AUTH_SUCCESS, payload: data }
 }
 
@@ -115,7 +115,7 @@ export function register({ user, pwd, repwd, type }) {
     axios.post('/user/register', { user, pwd, type })
       .then((res) => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(authSuccess({ user, pwd, type }))
+          dispatch(authSuccess({ user, pwd, type, _id: res.data.data._id }))
         } else {
           dispatch(errorMsg(res.data.msg))
         }

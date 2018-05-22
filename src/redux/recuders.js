@@ -10,8 +10,7 @@ const initState = {
   redirectTo: '',
   chatmsg: [],
   unread: 0,
-  users: {}
-
+  users: {},
 }
 // reducer
 export function chatuser(state = initState, action) {

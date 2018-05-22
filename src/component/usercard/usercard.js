@@ -26,9 +26,7 @@ class Usercard extends React.Component {
                     })}
                     {v.money ? <div>薪资: {v.money}</div> : null}
                     <p className="user-char-chat-with-p" onClick={this.handleClick.bind(this, v)}>
-                      <Icon type="message" />
-                      联系他（她）
-                </p>
+                      <Icon type="message" />联系他（她）</p>
                   </Card>
                 </Col>
                 : null
