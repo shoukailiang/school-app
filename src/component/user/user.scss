@@ -1,6 +1,8 @@
 .user-container{
-  width: 1000px;
   margin: auto;
+  .ant-card-bordered {
+    border: none;
+  }
   .ant-card-body{
     text-align: center;
   }
