@@ -9,12 +9,12 @@ class Usercard extends React.Component {
   }
   render() {
     return (
-      <Row gutter={16}>
+      <Row>
         {this.props.userlist2.map(v => {
           return (
             // 判断必须要有头像否侧不渲染
             v.avatar ?
-              <Col span={8} key={v._id} className="usercard-col">
+              <Col span={24} key={v._id} className="usercard-col">
                 <Card title={v.title} extra={v.user} >
                   <img src={require(`../avatarSelector/images/${v.avatar}.png`)} alt="" />
                   {v.company ? <div>公司: {v.company}</div> : null}

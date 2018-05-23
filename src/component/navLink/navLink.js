@@ -24,7 +24,7 @@ class NavLink extends React.Component {
             }}>
               <img src={v.path === pathname ? require(`./images/${v.icon}-active.png`) : require(`./images/${v.icon}.png`)} alt="" />
               {v.path === '/msg' && this.props.unread !== 0 ? <div className="circle-message"><p>{this.props.unread}</p></div> : null}
-              <a style={v.path === pathname ? { color: 'blue' } : {}}>{v.title}</a>
+              <a style={v.path === pathname ? { color: '#4a9aea' } : {}}>{v.title}</a>
             </span>
           )
         })}
