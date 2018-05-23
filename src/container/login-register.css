@@ -1,0 +1,47 @@
+.login-register-container {
+  width: 400px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100px;
+  margin: auto;
+  z-index: 100;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+  .login-register-container {
+    width: 320px;
+    top: 80px;
+  }
+}
+
+.login-register-container h2 {
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+}
+
+.login-register-container .logo-container {
+  margin-bottom: 30px;
+}
+
+.login-register-container .login-register-form-button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-register-container .ant-radio-group {
+  margin-bottom: 10px;
+}
+
+.error-msg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 10px;
+  width: 400px;
+}

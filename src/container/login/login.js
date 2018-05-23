@@ -31,7 +31,7 @@ class Login extends React.Component {
     return (
       <React.Fragment>
         {(this.props.redirectTo && this.props.redirectTo !== '/login') ? <Redirect to={this.props.redirectTo}></Redirect> : null}
-        <BackgroundCarousel />
+        {/* <BackgroundCarousel /> */}
         {this.props.msg ? <Alert message={this.props.msg} banner className="error-msg" type="error" /> : ''}
         <div className="login-register-container">
           <Logo />
