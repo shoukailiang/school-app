@@ -1,62 +1,88 @@
 .chat-container {
-    width: 800px;
-    height: 560px;
+    width: 100%;
+    height: 100vh;
     position: relative;
-    margin: 0px auto;
-    transform: translateY(200px);
     border: 1px solid #ccc;
+    flex-direction: column;
     .chat-container-username{
-        position: absolute;
+        position: fixed;
+        top: 0px;
         width: 100%;
-        height:30px;
+        height:40px;
         text-align: center;
         font-size: 16px;
-        background-color: rgb(168, 135, 135);
-        margin-bottom: 0;
-        top: -30px;
+        background-color: #4a9aea;
         font-weight: bold;
+        color: white;
+        line-height: 40px;
+        z-index: 10;
         >a{
             float: left;
             color: white;
+            font-size: 30px;
         }
     }
     .chat-content {
-        height: 420px;
+        padding-top: 40px;
         overflow: auto;
-        border-bottom: 2px solid black;
+        border-bottom: 1px solid #999;
+        height: 70vh;
     }
     .chat-message {
         position: relative;
         height: 140px;
-        // overflow: auto;
+        height: 30vh;
     }
     .chat-textarea {
         width: 100%;
         outline: none;
         border: none;
         height: 135px;  
-        padding: 16px;
-        padding-bottom: 40px;
+        padding: 30px 20px 20px 20px;
         resize: none;
     }
     .chat-button {
         position: fixed;
-        bottom: 4px;
+        bottom: 14px;
         right: 26px;
     }
     .chat-me{
         font-size: 18px;
         text-align: right;
+        position: relative;
+        .content-container-r{
+            display: inline-block;
+            max-width: 144px;
+            vertical-align: top;
+            right: 70px;
+            word-break: break-all;
+            text-align: left;
+            background: #4a9aea;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+        }
     }
     .chat-other{
         font-size: 18px;
+        position: relative;
+        .content-container-l{
+            max-width: 144px;
+            left: 70px;
+            vertical-align: top;
+            word-break: break-all;
+            text-align: left;
+            background: #4a9aea;
+            border-radius: 10px;
+            color: white;
+        }
     }
     .chat-emoji{
-        position: fixed;
-        bottom: 4px;
-        right: 3px;
+        position: absolute;
+        top: 4px;
+        left: 10px;
         cursor: pointer;
-    }
+        }
     .chat-emoji-container{
         background-color: white;
         text-align: center;

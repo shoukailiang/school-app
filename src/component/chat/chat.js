@@ -80,17 +80,21 @@ class Chat extends React.Component {
       <div className="chat-container">
         <p className="chat-container-username"><a onClick={() => {
           this.props.history.goBack()
-        }}>&lt;&lt;&lt;</a>{user[userid].name}</p>
+        }}>&lt;</a>{user[userid].name}</p>
         <div className="chat-content" ref="content">
           {chatmsg.map(v => {
             const avatar = require(`../avatarSelector/images/${user[v.from].avatar}.png`)
             return v.from === userid
               ? <p key={v._id} className="chat-other">
                 <img src={avatar} alt="" />
-                {v.content}
+                <span className="content-container-l">
+                  {v.content}
+                </span>
               </p>
               : <p key={v._id} className="chat-me">
-                {v.content}
+                <span className="content-container-r">
+                  {v.content}
+                </span>
                 <img src={avatar} alt="" />
               </p>
           })}
