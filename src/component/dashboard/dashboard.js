@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
         path: '/boss',
         text: '牛人',
         icon: 'boss',
-        title: '牛人列表',
+        title: '求职列表',
         component: Boss,
         hide: this.props.user.type === 'genius'
       },
@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
         path: '/genius',
         text: 'boss',
         icon: 'job',
-        title: '寻找小伙伴',
+        title: '招聘列表',
         component: Genius,
         hide: this.props.user.type === 'boss'
       },
@@ -61,6 +61,9 @@ class Dashboard extends React.Component {
     // 让动画生效，只渲染一个Route,根据当前的path决定组件
     return page?(
       <React.Fragment>
+        <div className="dashboard-top">
+          {page.title}
+        </div>
         <QueueAnim className="dashboard-wrapper" type="scaleX" delay={300} >
           <Route path={page.path} component={page.component} key={page.path}></Route>
         </QueueAnim>
