@@ -1,12 +1,23 @@
 .avatar-selector-container {
+    position: relative;
     width: 60%;
-    margin: 20px auto;
+    margin: auto {
+        top: 15px;
+        bottom: 20px;
+    };
+    @media (max-width: 1023px) {
+        width: 614px;
+        overflow: scroll;
+    }
+    @media (max-width: 650px) {
+        width: 320px;
+    }
 }
 
 .avatar-selector-header {
     font-size: 24px;
-    padding: 10px 0px;
-    margin-bottom: 20px;
+    // padding: 10px 0px;
+    margin-bottom: -10px;
     text-align: center;
 }
 

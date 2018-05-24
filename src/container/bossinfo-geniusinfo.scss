@@ -1,12 +1,23 @@
 .info-container {
     width: 60%;
     margin: auto;
+    padding-bottom: 10px;
     input,
     textarea {
         margin-bottom: 20px;
     }
     .btn {
+        width: 100%;
         display: block;
         margin: auto;
+    }
+    @media (max-width: 1023px) {
+        width: 614px;
+    }
+    @media (max-width: 650px) {
+        width: 320px;
+    }
+    @media (max-width: 350px) {
+        width: 290px;
     }
 }
