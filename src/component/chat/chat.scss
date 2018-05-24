@@ -67,6 +67,7 @@
         font-size: 18px;
         position: relative;
         .content-container-l{
+            display: inline-block;
             max-width: 144px;
             left: 70px;
             vertical-align: top;
@@ -75,6 +76,7 @@
             background: #4a9aea;
             border-radius: 10px;
             color: white;
+            padding: 10px;
         }
     }
     .chat-emoji{
