@@ -14,7 +14,7 @@ class Usercard extends React.Component {
           return (
             // 判断必须要有头像否侧不渲染
             v.avatar ?
-                <Card className="partner" title={`职位:${v.title}`} extra={`${v.user}`} >
+                <Card className="partner" title={`职位:${v.title}`} extra={`${v.user}`} key={v.user}>
                   <div className="niuren-left">
                     <img src={require(`../avatarSelector/images/${v.avatar}.png`)} alt="" />
                     <p className="user-char-chat-with-p" onClick={this.handleClick.bind(this, v)}>
