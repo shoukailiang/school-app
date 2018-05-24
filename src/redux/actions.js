@@ -98,8 +98,8 @@ export function register({ user, pwd, repwd, type }) {
   if (!user || !pwd || !repwd) {
     return errorMsg("用户名或者密码不能为空")
   }
-  if (user.length < 5) {
-    return errorMsg("用户名长度最少5位")
+  if (user.length < 3) {
+    return errorMsg("用户名长度最少3位")
   }
   if (pwd !== repwd) {
     return errorMsg("密码和确认密码不一致")
