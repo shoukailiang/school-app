@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col } from 'antd'
+import { Row, Col, Button } from 'antd'
 import PropTypes from 'prop-types'
 import './avatarSelector.scss'
 class AvatarSelector extends React.Component {
@@ -10,7 +10,8 @@ class AvatarSelector extends React.Component {
     super(props)
     this.state = {
       icon: "",
-      text: ""
+      text: "",
+      clientWidth: document.body.clientWidth
     }
   }
   handleSelect(value) {
@@ -31,15 +32,27 @@ class AvatarSelector extends React.Component {
       <div className="avatar-selector-container">
         {Header}
         <Row>
-          {
-            imgList.map((value, index) => {
-              return (
-                <Col span={3} key={value.text} className="avatar-selector-col">
-                  <img src={value.icon} alt="" onClick={this.handleSelect.bind(this, value)} />
-                </Col>
-              )
-            })
-          }
+          <div className="avatar-selector-ImgContainer">
+            {
+              this.state.clientWidth > 1023
+              ?
+                imgList.map((value, index) => {
+                  return (
+                    <Col span={3} key={value.text} className="avatar-selector-col">
+                      <img src={value.icon} alt="" onClick={this.handleSelect.bind(this, value)} />
+                    </Col>
+                  )
+                })
+              :
+                imgList.map((value, index) => {
+                  return (
+                    <Col span={6} key={value.text} className="avatar-selector-col">
+                      <img src={value.icon} alt="" onClick={this.handleSelect.bind(this, value)} />
+                    </Col>
+                  )
+                })
+            }
+          </div>
         </Row>
       </div>
     )
