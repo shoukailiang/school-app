@@ -22,7 +22,7 @@ class Usercard extends React.Component {
                     </p>
                   </div>
                   <div className="niuren-right">
-                    {v.company ? <div>公司: {v.company}</div> : null}
+                    {v.company ? <div>地点: {v.company}</div> : null}
                     {/* 若有换行符，进行一行一行显示 */}
                     <b>{v.type === 'boss' ? '要求：' : '个人介绍'}</b>
                     {v.desc.split('\n').map((v, index) => {
