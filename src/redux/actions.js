@@ -2,7 +2,7 @@ import * as ActionTypes from './actionTypes'
 import axios from 'axios'
 import io from 'socket.io-client'
 // 由于跨域了所以要写上端口
-const socket = io("ws://localhost:9999")
+const socket = io("ws://127.0.0.1:9999")
 // chat -------------------------------------------------------------------------------------------------------------------------------
 
 
