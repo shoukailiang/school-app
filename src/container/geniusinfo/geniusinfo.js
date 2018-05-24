@@ -42,7 +42,7 @@ class Geniusinfo extends React.Component {
     return (
       <React.Fragment>
         {redirect && redirect !== path ? <Redirect to={redirect}></Redirect> : null}
-        <InfoNav name="genius"></InfoNav>
+        <InfoNav name="求职者"></InfoNav>
         <AvatarSelector SelectAvatar={this.SelectAvatar}></AvatarSelector>
         <div className="info-container">
           <h2>请输入您的信息：</h2>

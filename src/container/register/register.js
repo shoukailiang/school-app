@@ -68,12 +68,12 @@ class Register extends React.Component {
             <RadioGroup onChange={this.props.handleChange.bind(this, 'type')}>
               <Radio value='boss'
                 checked={this.props.state.type === 'boss'}
-              >Boss
+              >发布者
               </Radio>
               <Radio
                 value='genius'
                 checked={this.props.state.type === 'genius'}
-              >牛人</Radio>
+              >求职者</Radio>
             </RadioGroup>
             <Button type="primary" className="login-register-form-button" size="large" onClick={this.handleRegister}>
               注册
