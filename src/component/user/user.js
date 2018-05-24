@@ -38,7 +38,7 @@ class User extends React.Component {
     const props = this.props
     return props.user ? (
       <div className="user-container">
-        <Card
+        <Card className="personal-center-wrapper"
         >
           <img src={require(`../avatarSelector/images/${props.avatar}.png`)} alt="" />
           <Meta

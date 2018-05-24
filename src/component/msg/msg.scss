@@ -1,37 +1,44 @@
 .msg-container {
-    width: 800px;
-    margin: 100px auto;
+    width: 100%;
+    padding: 10px;
     .msg-item {
         cursor: pointer;
         display: flex;
         align-items:center;
+        margin-bottom: 10px;
+        display: flex;
         &:hover {
-            background-color: skyblue;
+            background-color: rgb(245, 238, 209);
         }
         .msg-name-avatar{
-            display: flex;
+            width: 80px;
             flex-direction:column;
-            padding-right: 5%;
+            padding-right: 10px;
+            text-align: center;
         }
         p.msg-content {
+            vertical-align: top;
             width: 80%;
             height: 64px;
             overflow: hidden;
             margin-bottom: 0;
             white-space: nowrap;
             text-overflow: ellipsis;
+            word-break: all;
+            flex: 1;
+        }
+        .msg-circle {
+            display: block;
+            width: 28px;
+            height: 28px;
+            background: red;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
         }
 
     }
-    .msg-circle {
-        display: block;
-        width: 28px;
-        height: 28px;
-        background: red;
-        text-align: center;
-        line-height: 28px;
-        border-radius: 50%;
-        color: white;
-        font-weight: bold;
-    }
+   
 }
