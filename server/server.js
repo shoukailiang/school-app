@@ -1,50 +1,33 @@
-import express from 'express';
-import path from 'path';
-import bodyParse from 'body-parser';
-import cookieParse from 'cookie-parser';
-import userRoute from './user';
+const Koa =  require('koa');
+const bodyParser = require('koa-bodyparser');
+const cors = require('koa2-cors')
+const userRouter = require('./user');
+const model = require('./model.js');
 
-const app = express();
-import model from './model.js';
+const app = new Koa();
 const Chat = model.getModel('chat');
-// work with express socket.io和express绑定在一起
-const server = require('http').Server(app);
-const io = require('socket.io')(server)
-app.use(cookieParse());
-app.use(bodyParse.json())
 
+// work with Koa and socket.io
+const server = require('http').createServer(app.callback());
+const io = require('socket.io')(server,{cors: true});
 
+app.use(bodyParser());
+app.use(cors());
 
-// 设置静态资源
-app.use('/', express.static(path.resolve('build')))
-// 中间件
-app.use(function (req, res, next) {
-  // 设置一下白名单
-  if (req.url.startsWith('/user/') || req.url.startsWith('/static/')) {
-    return next()
-  }
-  return res.sendFile(path.resolve('build/index.html'))
-})
-
-// 监听到连接，参数socket指的是当前这次连接的socket,请求，io是指全局的请求
-// io是全局的请求，socket是当前这次连接的请求
+// Listen for connections
 io.on('connection', (socket) => {
-  console.log('user login')
-  //监听客户端的sendmsg事件，处理传递过来的参数
-  socket.on('sendmsg', (data) => {
-    // console.log(data)
-    // 把data广播到全局
-    // io.emit('recvmsg', data)
+  console.log('user login');
+  socket.on('sendmsg', async (data) => {
     const { from, to, msg } = data;
     const chatid = [from, to].sort().join('_');
-    Chat.create({ from, to, chatid, content: msg }, function (err, doc) {
-      // console.log(doc)
-      io.emit('recvmsg', Object.assign({}, doc._doc))
-    })
-  })
-})
+    const doc = await Chat.create({ from, to, chatid, content: msg });
+    io.emit('recvmsg', { ...doc._doc });
+  });
+});
 
-app.use('/user', userRoute)
+app.use(userRouter.routes())
+app.use(userRouter.allowedMethods())
+
 server.listen(9999, () => {
   console.log("服务开启在9999");
-})
+});
