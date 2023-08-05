@@ -3,11 +3,13 @@ import Bossinfo from '@/page/bossinfo';
 import Geniusinfo from '@/page/geniusinfo';
 import Login from '@/page/login';
 import Register from '../page/register';
-import Chat from '../page/chat';
 import MainLayout from '../layouts/MainLayout';
 import PersonCenter from '@/page/personCenter';
 import Boss from '@/page/boss';
 import Genius from '@/page/genius';
+import Msg from '@/components/msg';
+import Chat from '../components/chat';
+
 
 const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/msg',
-                element:<Chat/>
+                element:<Msg/>
             },
             {
                 path: '/me',

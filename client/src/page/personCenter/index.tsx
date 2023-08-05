@@ -17,7 +17,7 @@ const PersonCenter = () => {
     <div className={styles.container}>
       <Avatar
         src={`https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/${avatar}.png`}
-        style={{ "--size": "64px" }}
+        style={{ "--size": "100px" }}
       />
       <p>用户昵称：{user}</p>
       <p>期望岗位：{title}</p>

@@ -2,9 +2,11 @@ import { Toast  } from 'antd-mobile'
 import axios from 'axios'
 
 export type ResType = {
-  data?: DataType
   code: number
-  msg?: string
+  data?: DataType
+  msg?: string,
+  msgs?:any,
+  users?:object,
 }
 
 export type DataType = {
@@ -19,7 +21,7 @@ instance.interceptors.response.use(
   (res) => {
     const resData = (res.data || {}) as ResType
 
-    const { data, code, msg } = resData
+    const { data, code, msg, msgs, users } = resData
     if (code !== 0) {
       if (msg) {
         Toast.show({
@@ -29,6 +31,13 @@ instance.interceptors.response.use(
       }
 
       throw new Error(msg)
+    }
+    // TODO 后期改
+    if(data===undefined){
+      // 判断msgs和users是否有，任意一个有的话就返回他们
+      if(msgs||users){
+        return {msgs,users}
+      }
     }
     return data as any
   },

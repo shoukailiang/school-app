@@ -1,10 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
 }
-.card{
-    margin-bottom: 20px;
-    width: 80vw;
+.card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90vw;
 }
 
 .footer {
