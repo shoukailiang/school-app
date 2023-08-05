@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    h1{
+        margin-bottom: 50px;
+    }
+}
+.eye {
+  padding: 4px;
+  cursor: pointer;
+  svg {
+    display: block;
+    font-size: var(--adm-font-size-7);
+  }
+}

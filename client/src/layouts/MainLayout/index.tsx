@@ -1,10 +1,6 @@
 import React, { FC, useState } from "react";
 import { NavBar, TabBar } from "antd-mobile";
-import {
-  useNavigate,
-  useLocation,
-  Outlet,
-} from "react-router-dom";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import {
   AppOutline,
   MessageOutline,
@@ -12,6 +8,7 @@ import {
   UserOutline,
 } from "antd-mobile-icons";
 import styles from "./index.module.scss";
+import Auth from "@/components/auth";
 
 const Bottom: FC = () => {
   const nav = useNavigate();
@@ -56,20 +53,23 @@ const Bottom: FC = () => {
 
 const MainLayout: FC = () => {
   return (
-    <div className={styles.app}>
-      <div className={styles.top}>
-        <NavBar>
+    <>
+      <Auth />
+      <div className={styles.app}>
+        <div className={styles.top}>
+          <NavBar>
             {/* 获取url,然后url匹配对应的key，现实出对应的tiele */}
             后面在改
-        </NavBar>
+          </NavBar>
+        </div>
+        <div className={styles.body}>
+          <Outlet />
+        </div>
+        <div className={styles.bottom}>
+          <Bottom />
+        </div>
       </div>
-      <div className={styles.body}>
-        <Outlet />
-      </div>
-      <div className={styles.bottom}>
-        <Bottom />
-      </div>
-    </div>
+    </>
   );
 };
 
