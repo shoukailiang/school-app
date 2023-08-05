@@ -2,7 +2,7 @@ import { DotLoading } from "antd-mobile";
 import { getUserListService } from "@/services/user";
 import { useRequest } from "ahooks";
 import { useEffect } from "react";
-import { getUserListReducer } from "@/store/userReducer";
+import { getUserListReducer } from "@/store/chatUserReducer";
 import { useDispatch } from "react-redux";
 import UserCard from "@/components/userCard";
 const Boss = () => {
