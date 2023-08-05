@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const Router = require('koa-router'); 
 const bodyParser = require('koa-bodyparser');
+const cookie = require('koa-cookie');
 const utility = require('utility');
 const model = require('./model.js');
 
@@ -10,6 +11,7 @@ const User = model.getModel('user');
 const Chat = model.getModel('chat');
 
 app.use(bodyParser());
+app.use(cookie.default());
 
 // 注册
 router.post('/register', async (ctx) => {
@@ -92,7 +94,7 @@ router.get('/getmsglist', async (ctx) => {
 
 // 获取用户信息
 router.get('/info', async (ctx) => {
-    const { userid } = ctx.cookies.get('userid');
+    const userid = ctx.cookies.get('userid');
     if (!userid) {
       ctx.body = { code: 1 };
       return;
