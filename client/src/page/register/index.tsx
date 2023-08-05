@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, Radio, Space, Toast } from "antd-mobile";
+import { Button, Form, Input, Radio, Space } from "antd-mobile";
 import { EyeInvisibleOutline, EyeOutline } from "antd-mobile-icons";
 import LoginRegisterHoc from "@/components/login-register-hoc";
 import Logo from "@/components/logo";
@@ -88,7 +88,7 @@ const Register = (props: any) => {
             <Radio.Group defaultValue="1" onChange={(text)=>props.handleChange("type",text)}>
               <Space direction="horizontal">
                 <Radio value="boss">招聘者</Radio>
-                <Radio value="genius">被招聘者</Radio>
+                <Radio value="genius">求职者</Radio>
               </Space>
             </Radio.Group>
           </Form.Item>

@@ -5,27 +5,20 @@ import Login from '@/page/login';
 import Register from '../page/register';
 import Chat from '../page/chat';
 import MainLayout from '../layouts/MainLayout';
+import PersonCenter from '@/page/personCenter';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element:<MainLayout/>,
         children:[
-            // {
-            //     path: '/boss',
-            //     element:<Bossinfo/>
-            // },
-            // {
-            //     path: '/genius',
-            //     element:<Geniusinfo/>
-            // },
             {
                 path: '/msg',
                 element:<Chat/>
             },
             {
                 path: '/me',
-                element:<Chat/>
+                element:<PersonCenter/>
             },
 
             {

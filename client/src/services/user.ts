@@ -33,3 +33,22 @@ export async function getUserInfoService(): Promise<DataType> {
   const data = (await axios.get(url)) as DataType;
   return data;
 }
+
+// 更新用户信息
+export async function updateUserInfoService(
+  avatar: string,
+  title: string,
+  desc: string,
+  company?: string,
+  money?: string
+): Promise<DataType> {
+  const url = `/api/update`;
+  const data = (await axios.post(url, {
+    avatar,
+    title,
+    desc,
+    company,
+    money,
+  })) as DataType;
+  return data;
+}

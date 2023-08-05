@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, Space, Toast } from "antd-mobile";
+import { Button, Form, Input, Space } from "antd-mobile";
 import { EyeInvisibleOutline, EyeOutline } from "antd-mobile-icons";
 import LoginRegisterHoc from "@/components/login-register-hoc";
 import Logo from "@/components/logo";
@@ -9,7 +9,7 @@ import { useRequest } from "ahooks";
 import { loginService } from "@/services/user";
 import { loginReducer } from "@/store/userReducer";
 import { useDispatch } from 'react-redux'
-const Login = (props: any) => {
+const Login:FC = (props: any) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -30,16 +30,12 @@ const Login = (props: any) => {
       manual: true,
       onSuccess(res: any) {
         dispatch(loginReducer(res as any));
-        if(res.type === "genius"){
-          navigate("/geniusinfo");
-        }else{
-          navigate("/bossinfo");
-        }
+        navigate("/me");
       },
     }
   );
 
-  const handleLogin:FC = () => {
+  const handleLogin = () => {
     // 判断props.state中是否有username和password
     if (!props.state.username || !props.state.password) {
       return;
