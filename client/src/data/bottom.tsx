@@ -8,12 +8,12 @@ import {
 const tabs = [
     {
       key: "/boss",
-      title: "牛人",
+      title: "求职者",
       icon: <AppOutline />,
     },
     {
       key: "/genius",
-      title: "天才",
+      title: "老板",
       icon: <UnorderedListOutline />,
     },
     {

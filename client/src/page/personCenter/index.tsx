@@ -1,6 +1,6 @@
 import useGetUserInfo from "@/hooks/useGetUserInfo";
 import { logoutReducer } from "@/store/userReducer";
-import { Avatar, Button, Divider, Card } from "antd-mobile";
+import { Avatar, Button, Divider } from "antd-mobile";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.scss";

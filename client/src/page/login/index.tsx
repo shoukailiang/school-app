@@ -9,6 +9,7 @@ import { useRequest } from "ahooks";
 import { loginService } from "@/services/user";
 import { loginReducer } from "@/store/userReducer";
 import { useDispatch } from 'react-redux'
+import { getRedirectPath } from "@/utils";
 const Login:FC = (props: any) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
@@ -30,7 +31,8 @@ const Login:FC = (props: any) => {
       manual: true,
       onSuccess(res: any) {
         dispatch(loginReducer(res as any));
-        navigate("/me");
+        const path = getRedirectPath({type: res.type, avatar: res.avatar})
+        navigate(path);
       },
     }
   );

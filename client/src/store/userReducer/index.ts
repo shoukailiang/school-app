@@ -1,16 +1,33 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export type UserStateType = {
+type User = {
+  _id:string,
   user: string;
   type: string;
   avatar: string;
   title: string;
   desc: string;
   // 如果是boss,还有两个字段
-  company: string;
-  money: string;
+  company?: string;
+  money?: string;
+}
+
+export type UserStateType = {
+  // 存放牛人或者是boss的列表
+  userList:Array<User>,
+  _id:string;
+  user: string;
+  type: string;
+  avatar: string;
+  title: string;
+  desc: string;
+  // 如果是boss,还有两个字段
+  company?: string;
+  money?: string;
 };
 const initialState: UserStateType = {
+  userList:[],
+  _id:"",
   user: "",
   type: "",
   avatar: "",
@@ -30,7 +47,7 @@ export const userSlice = createSlice({
       state: UserStateType,
       action: PayloadAction<UserStateType>
     ) => {
-      return action.payload;
+      return {...state,...action.payload};
     },
     logoutReducer: () => {
       return initialState;
@@ -39,19 +56,30 @@ export const userSlice = createSlice({
       state: UserStateType,
       action: PayloadAction<UserStateType>
     ) => {
-      return action.payload;
+      return {...state,...action.payload};
     },
     updateUserReducer: (
       state: UserStateType,
       action: PayloadAction<UserStateType>
     ) => {
-      return action.payload;
+      return {...state,...action.payload};
+    },
+    getUserListReducer: (
+      state: UserStateType,
+      action: PayloadAction<User[]>
+    ) => {
+      return  {...state, userList: action.payload}
     },
   },
 });
 
-export const { loginReducer, logoutReducer, registerReducer,updateUserReducer } =
-  userSlice.actions;
+export const {
+  loginReducer,
+  logoutReducer,
+  registerReducer,
+  updateUserReducer,
+  getUserListReducer,
+} = userSlice.actions;
 const userReducer = userSlice.reducer;
 
 export default userReducer;

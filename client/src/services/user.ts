@@ -52,3 +52,10 @@ export async function updateUserInfoService(
   })) as DataType;
   return data;
 }
+
+// 获取用户列表
+export async function getUserListService(type:string): Promise<DataType> {
+  const url = `/api/list?type=${type}`;
+  const data = (await axios.get(url)) as DataType;
+  return data;
+}

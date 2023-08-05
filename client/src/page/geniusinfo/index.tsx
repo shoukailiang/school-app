@@ -13,7 +13,7 @@ const Geniusinfo = () => {
   const [desc, setDesc] = useState("");
   const [avatar, setAvatar] = useState("");
 
-  const handleChange = (key, value) => {
+  const handleChange = (key:string, value:string) => {
     if (key === "title") {
       setTitle(value);
     } else if (key === "desc") {

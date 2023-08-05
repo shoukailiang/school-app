@@ -6,12 +6,22 @@ import Register from '../page/register';
 import Chat from '../page/chat';
 import MainLayout from '../layouts/MainLayout';
 import PersonCenter from '@/page/personCenter';
+import Boss from '@/page/boss';
+import Genius from '@/page/genius';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element:<MainLayout/>,
         children:[
+            {
+                path: '/boss',
+                element:<Boss/>
+            },
+            {
+                path: '/genius',
+                element:<Genius/>
+            },
             {
                 path: '/msg',
                 element:<Chat/>

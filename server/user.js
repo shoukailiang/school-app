@@ -70,7 +70,13 @@ router.get('/list', async (ctx) => {
   const { type } = ctx.query;
   try {
     const userList = await User.find({ type });
-    ctx.body = { code: 0, doc: userList };
+    // 过滤掉userList中的pwd，__v字段
+    const filteredUserList = userList.map(user => {
+      const { pwd, __v, ...filteredUser } = user.toObject(); 
+      return filteredUser;
+    });
+
+    ctx.body = { code: 0, data: filteredUserList };
   } catch (err) {
     ctx.body = { code: 1, msg: '后端出错了' };
   }
