@@ -5,7 +5,7 @@ const userRouter = require('./user');
 const model = require('./model.js');
 
 const app = new Koa();
-const Chat = model.getModel('chat');
+const Chat = model.getModel('chats');
 
 // work with Koa and socket.io
 const server = require('http').createServer(app.callback());

@@ -6,34 +6,17 @@ import LoginRegisterHoc from "@/components/login-register-hoc";
 import Logo from "@/components/logo";
 import styles from "./index.module.scss";
 import { useRequest } from "ahooks";
-import { getUserInfoService,loginService } from "@/services/user";
+import { loginService } from "@/services/user";
 import { loginReducer } from "@/store/userReducer";
 import { useDispatch } from 'react-redux'
 const Login = (props: any) => {
   const [visible, setVisible] = useState(false);
-  const [userInfo, setUserInfo] = useState({ username: '', nickname: '' })
   const navigate = useNavigate();
 
   const dispatch = useDispatch()
 
   const backRegister = () => {
     navigate("/register");
-  };
-
-  // 加载用户信息
-  const loadUserInfo = () => {
-    getUserInfoService()
-      .then((res:any) => {
-        // 导航到主页
-        navigate("/");
-        setUserInfo(res as any);
-        dispatch(loginReducer(res as any));
-        Toast.show("登陆成功");
-      })
-      .catch((err) => {
-        console.log(err);
-        Toast.show("获取信息失败");
-      });
   };
 
   // 登陆
@@ -46,13 +29,17 @@ const Login = (props: any) => {
     {
       manual: true,
       onSuccess(res: any) {
-        Toast.show("登录成功");
-        loadUserInfo();
+        dispatch(loginReducer(res as any));
+        if(res.type === "genius"){
+          navigate("/geniusinfo");
+        }else{
+          navigate("/bossinfo");
+        }
       },
     }
   );
 
-  const handleLogin = () => {
+  const handleLogin:FC = () => {
     // 判断props.state中是否有username和password
     if (!props.state.username || !props.state.password) {
       return;

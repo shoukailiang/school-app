@@ -7,8 +7,8 @@ const model = require('./model.js');
 
 const app = new Koa();
 const router = new Router();
-const User = model.getModel('user');
-const Chat = model.getModel('chat');
+const User = model.getModel('users');
+const Chat = model.getModel('chats');
 
 app.use(bodyParser());
 app.use(cookie.default());

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const DB_URL = 'mongodb://127.0.0.1:27018/ant-pc-recruit';
 mongoose.connect(DB_URL);
 const models = {
-  user: {
+  users: {
     user: { type: String, required: true },
     pwd: { type: String, required: true },
     type: { type: String, required: true },
@@ -17,7 +17,7 @@ const models = {
     company: { type: String },
     money: { type: String },
   },
-  chat: {
+  chats: {
     chatid: { type: String, required: true },
     from: { type: String, required: true },
     to: { type: String, required: true },

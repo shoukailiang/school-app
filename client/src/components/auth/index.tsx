@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getUserInfoService, loginService } from "@/services/user";
+import { getUserInfoService } from "@/services/user";
 import { loginReducer } from "@/store/userReducer";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,17 +9,17 @@ const Auth = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // 加载用户信息
-      getUserInfoService()
-        .then((res: any) => {
-          // 导航到主页
-          navigate("/");
-          dispatch(loginReducer(res as any));
-          Toast.show("登陆成功");
-        })
-        .catch((err) => {
-          console.log(err);
-          Toast.show("获取信息失败");
-        });
+      // getUserInfoService()
+      //   .then((res: any) => {
+      //     // 导航到主页
+      //     navigate("/me");
+      //     dispatch(loginReducer(res as any));
+      //     Toast.show("登陆成功");
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     Toast.show("获取信息失败");
+      //   });
   }, []);
   return null;
 };

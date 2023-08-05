@@ -24,11 +24,17 @@ export const userSlice = createSlice({
         },
         logoutReducer: () => {
           return initialState
+        },
+        registerReducer: (
+          state: UserStateType,
+          action: PayloadAction<UserStateType>
+          ) => {
+            return action.payload
         }
     }
   })
 
-export const { loginReducer,logoutReducer } = userSlice.actions
+export const { loginReducer,logoutReducer,registerReducer } = userSlice.actions
 const userReducer = userSlice.reducer
 
 export default userReducer

@@ -11,14 +11,14 @@ const router = createBrowserRouter([
         path: '/',
         element:<MainLayout/>,
         children:[
-            {
-                path: '/boss',
-                element:<Bossinfo/>
-            },
-            {
-                path: '/genius',
-                element:<Geniusinfo/>
-            },
+            // {
+            //     path: '/boss',
+            //     element:<Bossinfo/>
+            // },
+            // {
+            //     path: '/genius',
+            //     element:<Geniusinfo/>
+            // },
             {
                 path: '/msg',
                 element:<Chat/>
@@ -27,14 +27,7 @@ const router = createBrowserRouter([
                 path: '/me',
                 element:<Chat/>
             },
-            {
-                path: '/bossinfo',
-                element:<Bossinfo/>
-            },
-            {
-                path: '/geniusinfo',
-                element:<Geniusinfo/>
-            },
+
             {
                 path: '/chat/:user',
                 element:<Chat/>
@@ -48,7 +41,15 @@ const router = createBrowserRouter([
     {
         path:"/register",
         element:<Register/>,
-    }
+    },
+    {
+        path: '/bossinfo',
+        element:<Bossinfo/>
+    },
+    {
+        path: '/geniusinfo',
+        element:<Geniusinfo/>
+    },
 ])
 
 export default router;

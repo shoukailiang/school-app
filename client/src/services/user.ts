@@ -16,12 +16,14 @@ export async function loginService(
 // 注册用户
 export async function registerService(
   username: string,
-  password: string
+  password: string,
+  type:string
 ): Promise<DataType> {
   const url = `/api/register`;
   const data = (await axios.post(url, {
-    username,
-    password,
+    user:username,
+    pwd:password,
+    type
   })) as DataType;
   return data;
 }
