@@ -49,7 +49,7 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { getMsgListReducer } = chatSlice.actions;
+export const { getMsgListReducer,msgRecvReducer,msgReadReducer } = chatSlice.actions;
 const chatReducer = chatSlice.reducer;
 
 export default chatReducer;

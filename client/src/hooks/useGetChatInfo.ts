@@ -3,9 +3,9 @@ import type { StateType } from "@/store";
 import { ChatStateType } from "@/store/chatReducer";
 
 const useGetChatInfo = () => {
-  const { users ,msgs, chatmsg, unread } =
+  const { users , chatmsg, unread } =
     useSelector<StateType>((state) => state.chat) as ChatStateType;
-  return { users ,msgs, chatmsg, unread };
+  return { users , chatmsg, unread };
 };
 
 export default useGetChatInfo;

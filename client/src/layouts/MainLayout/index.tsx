@@ -6,8 +6,9 @@ import styles from "./index.module.scss";
 import Auth from "@/components/auth";
 import tabs from "@/data/bottom";
 import { getMsgListReducer } from "@/store/chatReducer";
-import { getMessageListService } from "@/services/chat";
+import { getMessageListService,recvMsgService } from "@/services/chat";
 import { useDispatch } from "react-redux";
+import useGetUserInfo from "@/hooks/useGetUserInfo";
 import useGetChatInfo from "@/hooks/useGetChatInfo";
 import { useRequest } from "ahooks";
 
@@ -15,8 +16,9 @@ const MainLayout: FC = () => {
   const location = useLocation();
   const { pathname } = location;
   const dispatch = useDispatch();
+  const { _id } = useGetUserInfo();
   const { chatmsg } = useGetChatInfo();
-  const { data, run, loading } = useRequest(
+  const { run:getMsgListRun, loading:getMsgListLoading } = useRequest(
     async () => {
       const data = await getMessageListService();
       return data;
@@ -24,13 +26,15 @@ const MainLayout: FC = () => {
     {
       manual: true,
       onSuccess(res: any) {
-        dispatch(getMsgListReducer(res));
+        dispatch(getMsgListReducer({...res,userid:_id}));
       },
     }
   );
+
   useEffect(() => {
     if (chatmsg.length == 0) {
-      run();
+      getMsgListRun();
+      recvMsgService();
     }
   }, []);
   return (
