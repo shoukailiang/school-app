@@ -12,7 +12,7 @@ const initialState: ChatStateType = {
 };
 
 export const chatSlice = createSlice({
-  name: "chatUser",
+  name: "chat",
   initialState,
   reducers: {
     getMsgListReducer: (state, action: PayloadAction<any>) => {

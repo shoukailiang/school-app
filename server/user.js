@@ -116,18 +116,19 @@ router.get('/info', async (ctx) => {
   });
   
   // 标记消息为已读
+  // todo 这里面num 
   router.post('/readmsg', async (ctx) => {
     const userid = ctx.cookies.get('userid');
     const { from } = ctx.request.body;
     try {
       const result = await Chat.updateMany({ from, to: userid }, { '$set': { read: true } });
-      if (result.ok === 1) {
-        ctx.body = { code: 0, num: result.nModified };
+      if (result.modifiedCount >0) {
+        ctx.body = { code: 0, data: result.modifiedCount };
       } else {
-        ctx.body = { code: 1, msg: '修改失败' };
+        ctx.body = { code: 1, data: '修改失败' };
       }
     } catch (err) {
-      ctx.body = { code: 1, msg: '修改失败' };
+      ctx.body = { code: 1, data: '修改失败' };
     }
   });
 

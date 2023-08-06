@@ -8,7 +8,7 @@ import PersonCenter from '@/page/personCenter';
 import Boss from '@/page/boss';
 import Genius from '@/page/genius';
 import Msg from '@/components/msg';
-import Chat from '../components/chat';
+import Chat from '../page/chat';
 
 
 const router = createBrowserRouter([
@@ -32,7 +32,6 @@ const router = createBrowserRouter([
                 path: '/me',
                 element:<PersonCenter/>
             },
-
             {
                 path: '/chat/:user',
                 element:<Chat/>
@@ -55,6 +54,7 @@ const router = createBrowserRouter([
         path: '/geniusinfo',
         element:<Geniusinfo/>
     },
+
 ])
 
 export default router;
