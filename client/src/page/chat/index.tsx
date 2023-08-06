@@ -35,18 +35,18 @@ const Chat = () => {
   const { run: readMsgRun, loading: readMsgLoading } = useRequest(
     async (to) => {
       const data = await readMsgService(to);
-      return {num:data,from:to};
+      return { num: data, from: to };
     },
     {
       manual: true,
       onSuccess(res: any) {
-        console.log(res)
-        dispatch(msgReadReducer({ num:res.num, from: res.from }));
-        console.log({ num:res, userid: _id })
+        console.log(res);
+        dispatch(msgReadReducer({ num: res.num, from: res.from }));
+        console.log({ num: res, userid: _id });
       },
       onFinally() {
         nav(-1);
-      }
+      },
     }
   );
 
@@ -144,16 +144,16 @@ const Chat = () => {
             <div>
               {emoji2.map((v) => {
                 return (
-                  <b
+                  <span
+                    className={styles.emoji}
                     key={v}
                     title={v}
                     onClick={(e) => {
-                      console.log(e.target.title);
                       setText(text + e.target.title);
                     }}
                   >
                     {v}
-                  </b>
+                  </span>
                 );
               })}
             </div>

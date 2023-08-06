@@ -8,18 +8,19 @@ import {
 const tabs = [
     {
       key: "/boss",
-      title: "求职者",
+      title: "老板",
       icon: <AppOutline />,
     },
     {
       key: "/genius",
-      title: "老板",
+      title: "求职者",
       icon: <UnorderedListOutline />,
     },
     {
       key: "/msg",
       title: "消息",
       icon: <MessageOutline />,
+      badge: '0',
     },
     {
       key: "/me",

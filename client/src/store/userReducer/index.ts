@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export type UserStateType = {
-  _id:string;
+  _id: string;
   user: string;
   type: string;
   avatar: string;
@@ -12,7 +12,7 @@ export type UserStateType = {
   money?: string;
 };
 const initialState: UserStateType = {
-  _id:"",
+  _id: "",
   user: "",
   type: "",
   avatar: "",
@@ -27,12 +27,17 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loadDataReducer: () => {},
+    loadDataReducer: (
+      state: UserStateType,
+      action: PayloadAction<UserStateType>
+    ) => {
+      return { ...state, ...action.payload };
+    },
     loginReducer: (
       state: UserStateType,
       action: PayloadAction<UserStateType>
     ) => {
-      return {...state,...action.payload};
+      return { ...state, ...action.payload };
     },
     logoutReducer: () => {
       return initialState;
@@ -41,18 +46,19 @@ export const userSlice = createSlice({
       state: UserStateType,
       action: PayloadAction<UserStateType>
     ) => {
-      return {...state,...action.payload};
+      return { ...state, ...action.payload };
     },
     updateUserReducer: (
       state: UserStateType,
       action: PayloadAction<UserStateType>
     ) => {
-      return {...state,...action.payload};
+      return { ...state, ...action.payload };
     },
   },
 });
 
 export const {
+  loadDataReducer,
   loginReducer,
   logoutReducer,
   registerReducer,

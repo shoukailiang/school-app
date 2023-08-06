@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { NavBar } from "antd-mobile";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import NavBottom from "@/components/navBottom";
 import styles from "./index.module.scss";
 import Auth from "@/components/auth";
@@ -13,12 +13,13 @@ import useGetChatInfo from "@/hooks/useGetChatInfo";
 import { useRequest } from "ahooks";
 
 const MainLayout: FC = () => {
+  const nav = useNavigate();
   const location = useLocation();
   const { pathname } = location;
   const dispatch = useDispatch();
   const { _id } = useGetUserInfo();
   const { chatmsg } = useGetChatInfo();
-  const { run:getMsgListRun, loading:getMsgListLoading } = useRequest(
+  const { run:getMsgListRun, loading: getMsgListLoading } = useRequest(
     async () => {
       const data = await getMessageListService();
       return data;
@@ -37,12 +38,20 @@ const MainLayout: FC = () => {
       recvMsgService();
     }
   }, []);
+
+  const back = () => {
+    nav(-1);
+  }
   return (
     <>
       <Auth />
       <div className={styles.app}>
         <div className={styles.top}>
-          <NavBar>{tabs.find((item) => item.key === pathname)?.title}</NavBar>
+          <NavBar onBack={back}>
+            {
+              tabs.find((item) => item.key === pathname)?.title
+            }
+          </NavBar>
         </div>
         <div className={styles.body}>
           <Outlet />

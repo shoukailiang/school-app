@@ -20,17 +20,17 @@ export async function getMessageListService(): Promise<DataType> {
 }
 
 // todo 总感觉不是这样写的，但是不加防抖的话，会导致多次触发
-function debounce(func, delay) {
-  let timeoutId;
+function debounce(func: any, delay: number) {
+  let timeoutId: ReturnType<typeof setTimeout>;
 
-  return function (...args) {
+  return function (...args):void {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       func.apply(this, args);
     }, delay);
   };
 }
-let debouncedRecvMsgHandler;
+let debouncedRecvMsgHandler:any;
 export function recvMsgService(): any {
   if (!debouncedRecvMsgHandler) {
     debouncedRecvMsgHandler = debounce((data) => {

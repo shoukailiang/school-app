@@ -13,7 +13,7 @@ const Boss = () => {
     loading: bossLoading,
   } = useRequest(
     async () => {
-      const data = await getUserListService("genius");
+      const data = await getUserListService("boss");
       return data;
     },
     {

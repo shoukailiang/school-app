@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { getUserInfoService } from "@/services/user";
-import { loginReducer } from "@/store/userReducer";
+import { loadDataReducer } from "@/store/userReducer";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "antd-mobile";
@@ -13,7 +13,7 @@ const Auth = () => {
         .then((res: any) => {
           // 导航到主页
           navigate("/me");
-          dispatch(loginReducer(res as any));
+          dispatch(loadDataReducer(res as any));
           Toast.show("登陆成功");
         })
         .catch((err) => {
