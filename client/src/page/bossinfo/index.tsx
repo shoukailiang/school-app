@@ -15,7 +15,7 @@ const Bossinfo = () => {
   const [company, setCompany] = useState("");
   const [money, setMoney] = useState("");
 
-  const handleChange = (key, value) => {
+  const handleChange = (key:string, value:string) => {
     if (key === "title") {
       setTitle(value);
     } else if (key === "desc") {
@@ -45,7 +45,7 @@ const Bossinfo = () => {
     },
     {
       manual: true,
-      onSuccess(res: any) {
+      onSuccess(res) {
         dispatch(updateUserReducer(res as any));
         nav("/me");
       },
@@ -76,7 +76,7 @@ const Bossinfo = () => {
           onChange={(e) => handleChange("money", e)}
         />
         <Space/>
-         <TextArea placeholder='招聘要求' rows={5}  onChange={(e) => handleChange("desc", e)}/>
+        <TextArea placeholder='招聘要求' rows={5}  onChange={(e) => handleChange("desc", e)}/>
         <Button block color="primary" size="large" onClick={handleUpdate} loading={updateUserInfoLoading}>
           保存
         </Button>

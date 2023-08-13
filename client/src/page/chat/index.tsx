@@ -6,40 +6,41 @@ import {
   sendMsgService,
 } from "@/services/chat";
 import useGetChatInfo from "@/hooks/useGetChatInfo";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMsgListReducer, msgReadReducer } from "@/store/chatReducer";
 import { useDispatch } from "react-redux";
 import useGetUserInfo from "@/hooks/useGetUserInfo";
 import styles from "./index.module.scss";
-import { Button, Space, Tag, TextArea } from "antd-mobile";
+import { Button, Space, TextArea } from "antd-mobile";
 import { useParams, useNavigate } from "react-router-dom";
 import { getChatId } from "@/utils";
 const Chat = () => {
+  const emojiBoxRef = useRef(null);
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { chatmsg, users } = useGetChatInfo();
   const { _id } = useGetUserInfo();
-  const { run, loading } = useRequest(
+  const { run } = useRequest(
     async () => {
       const data = await getMessageListService();
       return data;
     },
     {
       manual: true,
-      onSuccess(res: any) {
+      onSuccess(res) {
         dispatch(getMsgListReducer({ ...res, userid: _id }));
       },
     }
   );
 
-  const { run: readMsgRun, loading: readMsgLoading } = useRequest(
+  const { run: readMsgRun } = useRequest(
     async (to) => {
       const data = await readMsgService(to);
       return { num: data, from: to };
     },
     {
       manual: true,
-      onSuccess(res: any) {
+      onSuccess(res) {
         console.log(res);
         dispatch(msgReadReducer({ num: res.num, from: res.from }));
         console.log({ num: res, userid: _id });
@@ -58,14 +59,32 @@ const Chat = () => {
       run();
       recvMsgService();
     }
-  }, []);
+  },[]);
   const handleSend = () => {
     const from = _id;
     const to = userid;
     const msg = text;
     sendMsgService({ from, to, msg });
     setText("");
+    // 表情框消失
+    setShowEmoji(false);
   };
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (emojiBoxRef.current && !emojiBoxRef.current.contains(e.target as Node)) {
+      setShowEmoji(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleEmojiClick = (emoji: string) => {
+    setText(text + emoji);
+  }
   // 表情
   const emoji =
     "😃 😄 😁 😆 😅 😂 😊 😇 🙂 🙃 😉 😌 😍 😘 😗 😙 😚 😋 😜 😝 😛 🤑 🤗 🤓 😎 😏 😒 😞 😔 😟 😕 🙁 😣 😖 😫 😩 😤 😠 😡 😶 😐 😑 😯 😦 😧 😮 😲 😵 😳 😱 😨 😰 😢 😥 😭 😓 😪 😴 🙄 🤔 😬 🤐 😷 🤒 🤕 😈 👿 👹 👺 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾 👐 🙌 👏 🙏 👍 👎 👊 ✊ 🤘 👌 👈 👉 👆 👇 ✋  🖐 🖖 👋  💪 🖕 ✍️  💅 🖖 💄 💋 👄 👅 👂 👃 👁 👀 "
@@ -74,6 +93,7 @@ const Chat = () => {
       .filter((v) => v);
   // 去重
   const emoji2 = Array.from(new Set(emoji));
+  if(!userid) return null;
   if (!users[userid]) return null;
   const chatid = getChatId(userid, _id); // 别人的和自己的id
   const chatmsgs = chatmsg.filter((v) => v.chatid === chatid);
@@ -109,14 +129,7 @@ const Chat = () => {
         })}
       </div>
       <div
-        className={styles["chat-message"]}
-        onClick={(e) => {
-          if (e.target.className === "chat-emoji") {
-            return;
-          }
-          // setShowEmoji(false);
-        }}
-      >
+        className={styles["chat-message"]}>
         <TextArea
           placeholder="请输入内容"
           rows={3}
@@ -140,7 +153,7 @@ const Chat = () => {
           发送
         </Button>
         {showEmoji ? (
-          <div className={styles["chat-emoji-container"]}>
+          <div className={styles["chat-emoji-container"]} ref={emojiBoxRef}>
             <div>
               {emoji2.map((v) => {
                 return (
@@ -148,9 +161,7 @@ const Chat = () => {
                     className={styles.emoji}
                     key={v}
                     title={v}
-                    onClick={(e) => {
-                      setText(text + e.target.title);
-                    }}
+                    onClick={() => handleEmojiClick(v)}
                   >
                     {v}
                   </span>

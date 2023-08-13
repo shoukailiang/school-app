@@ -19,7 +19,7 @@ const MainLayout: FC = () => {
   const dispatch = useDispatch();
   const { _id } = useGetUserInfo();
   const { chatmsg } = useGetChatInfo();
-  const { run:getMsgListRun, loading: getMsgListLoading } = useRequest(
+  const { run:getMsgListRun} = useRequest(
     async () => {
       const data = await getMessageListService();
       return data;

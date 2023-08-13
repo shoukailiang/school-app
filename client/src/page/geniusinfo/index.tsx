@@ -38,7 +38,7 @@ const Geniusinfo = () => {
     },
     {
       manual: true,
-      onSuccess(res: any) {
+      onSuccess(res) {
         dispatch(updateUserReducer(res as any));
         nav("/me");
       },

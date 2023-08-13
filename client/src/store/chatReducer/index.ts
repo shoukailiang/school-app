@@ -1,8 +1,24 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+interface MsgType {
+  _id: string;
+  from: string;
+  to: string;
+  content: string;
+  create_time: number;
+  chatid: string;
+  read: boolean;
+  __v: number;
+}
+
 export type ChatStateType = {
-  users: object;
-  chatmsg: any[];
+  users: {
+    [key: string]: {
+      name: string;
+      avatar: string;
+    };
+  };
+  chatmsg: MsgType[];
   unread: number;
 };
 const initialState: ChatStateType = {
