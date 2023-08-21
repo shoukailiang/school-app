@@ -1,3 +1,4 @@
+import { MsgType } from '@/store/chatReducer'
 import { Toast  } from 'antd-mobile'
 import axios from 'axios'
 
@@ -5,7 +6,7 @@ export type ResType = {
   code: number
   data?: DataType
   msg?: string,
-  msgs?:any,
+  msgs?:MsgType[],
   users?:object,
 }
 

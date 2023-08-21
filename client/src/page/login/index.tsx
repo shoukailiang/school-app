@@ -8,13 +8,20 @@ import styles from "./index.module.scss";
 import { useRequest } from "ahooks";
 import { loginService } from "@/services/user";
 import { loginReducer } from "@/store/userReducer";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import { getRedirectPath } from "@/utils";
-const Login:FC = (props: any) => {
+type PropsType = {
+  state: {
+    username: string;
+    password: string;
+  };
+  handleChange: (key: string, value: string) => void;
+};
+const Login: FC<PropsType> = (props: PropsType) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const backRegister = () => {
     navigate("/register");
@@ -30,8 +37,8 @@ const Login:FC = (props: any) => {
     {
       manual: true,
       onSuccess(res: any) {
-        dispatch(loginReducer(res as any));
-        const path = getRedirectPath({type: res.type, avatar: res.avatar})
+        dispatch(loginReducer(res));
+        const path = getRedirectPath({ type: res.type, avatar: res.avatar });
         navigate(path);
       },
     }

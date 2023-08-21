@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FC } from 'react';
 const H1 = styled.h1`
   text-align: center;
   padding: 10px;
@@ -7,7 +8,10 @@ const H1 = styled.h1`
     color: #ccc;
   }
 `;
-const InfoNav = ({ name }) => {
+type PropsType = {
+  name: string;
+};
+const InfoNav:FC<PropsType>= ({ name }) => {
   return (
     <>
       <H1>

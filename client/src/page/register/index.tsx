@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Radio, Space } from "antd-mobile";
 import { EyeInvisibleOutline, EyeOutline } from "antd-mobile-icons";
@@ -9,7 +9,15 @@ import { useRequest } from "ahooks";
 import { registerService } from "@/services/user";
 import { registerReducer } from "@/store/userReducer";
 import { useDispatch } from "react-redux";
-const Register = (props: any) => {
+type PropsType = {
+  state: {
+    username: string;
+    password: string;
+    type: string;
+  };
+  handleChange: (key: string, value: string|number) => void;
+};
+const Register: FC<PropsType> = (props: PropsType) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -22,17 +30,17 @@ const Register = (props: any) => {
   // 注册
   const { run: register, loading: registerLoading } = useRequest(
     async () => {
-      const { username, password,type } = props.state;
-      const data = await registerService(username, password,type);
+      const { username, password, type } = props.state;
+      const data = await registerService(username, password, type);
       return data;
     },
     {
       manual: true,
       onSuccess(res: any) {
-        dispatch(registerReducer(res as any));
-        if(res.type === "genius"){
+        dispatch(registerReducer(res));
+        if (res.type === "genius") {
           navigate("/geniusinfo");
-        }else{
+        } else {
           navigate("/bossinfo");
         }
       },
@@ -85,7 +93,10 @@ const Register = (props: any) => {
             />
           </Form.Item>
           <Form.Item>
-            <Radio.Group defaultValue="1" onChange={(text)=>props.handleChange("type",text)}>
+            <Radio.Group
+              defaultValue="1"
+              onChange={(text) => props.handleChange("type", text)}
+            >
               <Space direction="horizontal">
                 <Radio value="boss">招聘者</Radio>
                 <Radio value="genius">求职者</Radio>

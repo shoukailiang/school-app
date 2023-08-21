@@ -20,7 +20,8 @@ const NavBottom: FC = () => {
       {tabs.map(
         (item) =>
           item.key.slice(1) !== type && (
-            <TabBar.Item key={item.key} icon={item.icon} title={item.title}  badge={item.key.slice(1)=="msg"?unread:null}/>
+            unread>0? <TabBar.Item key={item.key} icon={item.icon} title={item.title}  badge={item.key.slice(1)=="msg"?unread:null}/>:
+            <TabBar.Item key={item.key} icon={item.icon} title={item.title}/>
           )
       )}
     </TabBar>

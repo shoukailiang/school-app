@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface MsgType {
+export interface MsgType {
   _id: string;
   from: string;
   to: string;

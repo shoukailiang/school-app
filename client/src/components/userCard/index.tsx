@@ -1,10 +1,11 @@
-import { Button, Card, Toast } from "antd-mobile";
+import { Button, Card } from "antd-mobile";
 import { AntOutline, RightOutline } from "antd-mobile-icons";
 import styles from "./index.module.scss";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserStateType as User } from "@/store/userReducer";
 type propsType = {
-  userList: any[];
+  userList: User[];
 };
 const UserCard: FC<propsType> = (props: propsType) => {
   const nav = useNavigate();
@@ -42,7 +43,7 @@ const UserCard: FC<propsType> = (props: propsType) => {
               <Button
                 color="primary"
                 onClick={() => {
-                   nav(`/chat/${item._id}`);
+                  nav(`/chat/${item._id}`);
                 }}
               >
                 联系ta

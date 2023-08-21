@@ -15,7 +15,8 @@ import { Button, Space, TextArea } from "antd-mobile";
 import { useParams, useNavigate } from "react-router-dom";
 import { getChatId } from "@/utils";
 const Chat = () => {
-  const emojiBoxRef = useRef(null);
+  const emojiBoxRef = useRef<HTMLDivElement>(null);
+  const chatContentRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { chatmsg, users } = useGetChatInfo();
@@ -68,6 +69,10 @@ const Chat = () => {
     setText("");
     // 表情框消失
     setShowEmoji(false);
+    if (chatContentRef.current) {
+      // 好像不起作用
+      chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
+    }
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -110,7 +115,7 @@ const Chat = () => {
         </a>
         {users[userid].name}
       </p>
-      <div className={styles["chat-content"]}>
+      <div className={styles["chat-content"]}  ref={chatContentRef}>
         {chatmsgs.map((v) => {
           const avatar = `https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/${
             users[v.from].avatar

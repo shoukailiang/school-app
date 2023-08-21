@@ -3,18 +3,23 @@ import useGetUserInfo from "@/hooks/useGetUserInfo";
 import styles from "./index.module.scss";
 import { useNavigate } from "react-router";
 import { FC } from "react";
+import { MsgType } from "@/store/chatReducer";
+type MsgGroupType = {
+  [key: string]: MsgType[];
+};
 const Msg: FC = () => {
   const nav = useNavigate();
-  const getLast = (arr: []) => {
+  const getLast = (arr: MsgType[]) => {
     return arr[arr.length - 1];
   };
-  const msgGroup: any = {};
+  const msgGroup: MsgGroupType = {};
   const { _id } = useGetUserInfo();
   const { users, chatmsg } = useGetChatInfo();
   chatmsg.forEach((v) => {
     msgGroup[v.chatid] = msgGroup[v.chatid] || [];
     msgGroup[v.chatid].push(v);
   });
+  console.log(msgGroup);
   // 将消息后发的放在前面
   const chatList = Object.values(msgGroup).sort((a, b) => {
     const a_last = getLast(a).create_time;
